@@ -26,8 +26,4 @@
     };
   };
 
-  program.starship = {
-    enable = true;
-    enableZshIntegration = true;
-  };
 }

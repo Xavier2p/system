@@ -5,7 +5,7 @@
     # Nix channels
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-23.05";
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-23.05";
+    nixpkgs.url = "nixpkgs-stable.url";
 
     # NixOS modules for macOS
     darwin.url = "github:lnl7/nix-darwin";
