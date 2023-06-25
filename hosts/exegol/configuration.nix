@@ -3,5 +3,9 @@
 { pkgs, ... }:
 
 {
+  imports = [
+    ./homebrew.nix
+    ./defaults.nix
+  ];
   programs.zsh.enable = true;
 }
