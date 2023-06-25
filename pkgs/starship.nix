@@ -155,7 +155,7 @@ $nix_shell$sudo$character";
       };
 
       package = {
-        disabled = false
+        disabled = false;
         format = "[\[$symbol$version\]]($style) ";
         style = "dimmed orange";
         version_format = "${raw}";

@@ -1,5 +1,7 @@
 # Apple related things, for macOS
 
-{ pkgs, ... }: {
+{ pkgs, ... }:
+
+{
   programs.zsh.enable = true;
 }

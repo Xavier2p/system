@@ -1,4 +1,6 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+
+{
   home.stateVersion = "23.05";
 
   home.packages = with pkgs; [
@@ -12,7 +14,7 @@
   };
 
   programs.bat.enable = true;
-  
+
   programs.zsh = {
     enable = true;
     enableCompletions = true;
@@ -25,5 +27,4 @@
       l = "lsd -l";
     };
   };
-
 }
