@@ -8,3 +8,6 @@
 
 This repo contains all of my system configuration for all of my hosts,
 built with Nix.
+
+> **Warning**  
+> This project is _work in progress_, so it's not working now.
