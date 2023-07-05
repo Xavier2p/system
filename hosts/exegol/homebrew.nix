@@ -11,7 +11,16 @@
       # "Amphetamine" = "937984704";
     };
     # Homebrew casks to install
-    casks = [ "raycast" "maccy" ];
+    casks = [
+      "raycast"
+      "maccy"
+      "arc"
+      "android-file-transfer"
+      "appcleaner"
+      # "burp-suite"
+      "firefox"
+      "obsidian"
+    ];
     # Homebrew taps to install
     taps = [ ];
     # Homebrew packages to install

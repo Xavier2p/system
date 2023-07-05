@@ -6,6 +6,19 @@
   home.packages = with pkgs; [
     lsd
     neofetch
+    ansible
+    git
+    vim
+    btop
+    gh
+
+    # Fun
+    asciiquarium
+    cmatrix
+    cbonsai
+    lolcat
+    sl
+    toilet
   ];
 
   home.sessionVariables = {
