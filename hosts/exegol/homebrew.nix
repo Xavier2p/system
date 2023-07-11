@@ -12,14 +12,16 @@
     };
     # Homebrew casks to install
     casks = [
-      "raycast"
-      "maccy"
-      "arc"
       "android-file-transfer"
       "appcleaner"
-      # "burp-suite"
+      "arc"
       "firefox"
+      "insomnia"
+      "maccy"
       "obsidian"
+      "raycast"
+      "vlc"
+      # "burp-suite"
     ];
     # Homebrew taps to install
     taps = [ ];
