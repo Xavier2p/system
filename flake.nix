@@ -24,7 +24,11 @@
         system = "aarch64-darwin";
         pkgs = import nixpkgs { system = "aarch64-darwin"; };
         modules = [
-          ./hosts/exegol/configuration.nix
+          # ./hosts/exegol/configuration.nix
+          ({ pkgs, ... }: {
+            programs.bat.enable = true;
+            systemPackages = with pkgs; [ sl ];
+          })
           home-manager.darwinModules.home-manager
           {
             home-manager = {
