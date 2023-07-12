@@ -2,7 +2,9 @@
 
 <div align="center">
     <h1><code>system</code></h1>
-    <img src="https://builtwithnix.org/badge.svg" alt="built with nix" />
+    <a href="https://builtwithnix.org">
+        <img src="https://builtwithnix.org/badge.svg" alt="built with nix" />
+    </a>
     <!-- <img src="https://img.shields.io/github/languages/top/xavier2p/system?style=for-the-badge&logo=nixos" alt="lang" /> -->
 </div>
 

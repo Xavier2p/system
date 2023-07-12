@@ -2,6 +2,7 @@
 
 {
   home.stateVersion = "23.05";
+  home.enableNixpkgsReleaseCheck = false;
 
   home.packages = with pkgs; [
     # lsd
@@ -26,6 +27,8 @@
     EDITOR = "vim";
     NIX_TEST_VAR = "test";
   };
+
+  programs.bat.enable = true;
 
   # programs.zsh = {
   #   enable = true;

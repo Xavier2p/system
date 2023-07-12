@@ -25,15 +25,15 @@
         pkgs = import nixpkgs { system = "aarch64-darwin"; };
         modules = [
           # ./hosts/exegol/configuration.nix
-          ({ pkgs, ... }: {
-            programs.bat.enable = true;
-            systemPackages = with pkgs; [ sl ];
-          })
+          # ({ pkgs, ... }: {
+          # systemPackages = with pkgs; [ sl ];
+          # system.stateVersion = "4";
+          # })
           home-manager.darwinModules.home-manager
           {
             home-manager = {
               useGlobalPkgs = true;
-              useUsersPackages = true;
+              useUserPackages = true;
               users."xavier2p" = {
                 imports = [
                   ./home/configuration.nix
