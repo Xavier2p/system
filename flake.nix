@@ -1,5 +1,5 @@
 {
-  description = "Xavier2p Forge System Configuration";
+  description = "Xavier2p `/forge` System Configuration";
 
   inputs = {
     # Nix channels
@@ -25,10 +25,11 @@
         pkgs = import nixpkgs { system = "aarch64-darwin"; };
         modules = [
           # ./hosts/exegol/configuration.nix
-          # ({ pkgs, ... }: {
-          # systemPackages = with pkgs; [ sl ];
-          # system.stateVersion = "4";
-          # })
+          ({ pkgs, ... }: {
+            # system.stateVersion = "4";
+            systemPackages = with pkgs; [ sl ];
+            programs.bat.enable = true;
+          })
           home-manager.darwinModules.home-manager
           {
             home-manager = {
