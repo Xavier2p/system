@@ -4,6 +4,7 @@
   inputs = {
     # Nix channels
     nixpkgs.url = "github:nixos/nixpkgs/nixos-23.05";
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
     # NixOS modules for macOS
     darwin = {
@@ -19,6 +20,14 @@
   };
 
   outputs = inputs @ { home-manager, darwin, nixpkgs, ... }:
+    let
+      vars = {
+        user = "xavier2p";
+        editor = "vim";
+        location = "$HOME/.system";
+        terminal = "alacritty";
+      };
+    in
     {
       darwinConfiguration."exegol" = darwin.lib.darwinSystem {
         system = "aarch64-darwin";
