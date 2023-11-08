@@ -1,12 +1,12 @@
-#  Specific system configuration settings for `scariff`
+#  Specific system configuration settings for `nevarro`
 #
 #  flake.nix
-#   ├─ ./hosts
+#   ├─ hosts/
 #   │   ├─ default.nix
-#   │   └─ ./scariff
+#   │   └─ nevarro/
 #   │        ├─ default.nix *
 #   │        └─ hardware.nix
-#   └─ ./pkgs
+#   └─ pkgs/
 #       └─ docker.nix
 
 
