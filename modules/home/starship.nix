@@ -128,7 +128,7 @@ $nix_shell$sudo$character";
       nodejs = {
         format = "[$symbol]($style) ";
         symbol = "";
-        version_format = "v${major}";
+        version_format = "v\${major}";
         style = "bold green";
       };
 
@@ -158,7 +158,7 @@ $nix_shell$sudo$character";
         disabled = false;
         format = "[\[$symbol$version\]]($style) ";
         style = "dimmed orange";
-        version_format = "${raw}";
+        version_format = "\${raw}";
         symbol = " ";
         display_private = true;
       };
@@ -198,7 +198,7 @@ $nix_shell$sudo$character";
         symbol = "󱁢 ";
         style = "bold 105";
         disabled = false;
-        version_format = "v${raw}";
+        version_format = "v\${raw}";
       };
 
       time = {
