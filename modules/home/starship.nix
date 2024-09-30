@@ -9,7 +9,7 @@
       add_newline = true;
       scan_timeout = 10;
       right_format = "$cmd_duration$jobs";
-      format = "$username$hostname$localip$os$directory$git_branch$git_commit$git_status$container$c$rust$golang$python$nodejs$java$php$dotnet$elixir$erlang$gcloud$kubernetes$aws$package$docker_context$terraform$fill$memory_usage
+      format = "$username$hostname$localip$os$directory$git_branch$git_commit$git_status$container$c$rust$golang$python$nodejs$java$php$dotnet$elixir$erlang$gcloud$kubernetes$aws$package$terraform$docker_context$fill$memory_usage
 $nix_shell$sudo$character";
       continuation_prompt = "➜";
       palette = "main";
@@ -42,7 +42,6 @@ $nix_shell$sudo$character";
 
       cmd_duration = {
         min_time = 500;
-        # format = "[\[](drawings)[$duration]($style)[\]─](drawings)"
         format = " [$duration]($style)";
         style = "bold yellow";
         show_milliseconds = false;
@@ -56,7 +55,7 @@ $nix_shell$sudo$character";
       };
 
       docker_context = {
-        format = "[\[$symbol $context\] ]($style) ";
+        format = "[$symbol ://$context]($style) ";
         symbol = "";
       };
 
@@ -116,11 +115,11 @@ $nix_shell$sudo$character";
         format = "[\[$symbol$ram\($ram_pct\)\]]($style)";
         threshold = 75;
         symbol = " ";
-        style = "bold dimmed green";
+        style = "bold red";
       };
 
       nix_shell = {
-        format = "[$symbol$state-$name]($style) ";
+        format = "[$symbol$name]($style) ";
         symbol = " ";
         style = "bold blue";
       };

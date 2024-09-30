@@ -1,11 +1,38 @@
 {
-  ":q" = "exit";
-  l = "lsd --long --git";
-  la = "lsd --almost-all";
-  lal = "lsd --almost-all --long";
-  ll = "lsd --long";
+  # LS
   ls = "lsd";
+  la = "lsd --almost-all";
+  l = "lsd --long --git --human-readable --almost-all";
+  ll = "lsd --long --human-readable";
+  lll = "lsd --almost-all --long --human-readable";
   tree = "lsd --tree";
-  #nixos-rebuild = "pushd $NIX_CONFIG_DIR && sudo darwin-rebuild --flake switch && popd";
+
+  # GIT
+  g = "git";
+  gaa = "git add --all";
+  gau = "git add --update";
+  gb = "git branch";
+  gl = "git log --all --oneline --graph --decorate";
+  gp = "git pull; git log --all --oneline --graph --decorate -n 10";
+  gpft = "git push --follow-tags";
+  gpsh = "git push";
+  gst = "git status";
+  gsw = "git switch";
+
+  # Update Files
+  mk = "vim Makefile";
+  rca = "vim ~/.system/modules/home/zsh-aliases.nix";
+
+  # Shortners
+  dk = "docker";
+  dkc = "docker-compose";
+  kb = "kubectl";
   tf = "terraform";
+  make = "make -Bj";
+  z = "zellij";
+
+  # Misc
+  ":q" = "exit";
+
+  #nixos-rebuild = "pushd $NIX_CONFIG_DIR && sudo darwin-rebuild --flake switch && popd";
 }

@@ -6,5 +6,6 @@
     ./zsh.nix
     ./git.nix
     ./vscode.nix
+    ./i3status.nix
   ];
 }
