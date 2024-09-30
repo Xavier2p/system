@@ -3,8 +3,7 @@
 
   inputs = {
     # Nix channels
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
-    nixpkgsUnstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
     # NixOS modules for macOS
     # darwin = {
@@ -35,8 +34,7 @@
       geonosis = nixpkgs.lib.nixosSystem {
         specialArgs = { inherit inputs; };
         modules = [
-          /home/eagle/.system/hosts/geonosis/configuration.nix
-          #./hosts/geonosis/configuration.nix
+          ./hosts/geonosis/configuration.nix
           inputs.home-manager.nixosModules.default
         ];
       };
