@@ -7,9 +7,9 @@
 {
   imports =
     [ # Include the results of the hardware scan.
-      ./hardware.nix
-      inputs.home-manager.nixosModules.default
-    ];
+    ./hardware.nix
+    inputs.home-manager.nixosModules.default
+  ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -17,7 +17,17 @@
 
   boot.initrd.luks.devices."luks-67770c13-d64e-4676-8e53-aba49a68d96a".device = "/dev/disk/by-uuid/67770c13-d64e-4676-8e53-aba49a68d96a";
   networking.hostName = "geonosis"; # Define your hostname.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+
+  security.pki.certificateFiles = [ /home/eagle/Documents/carl/telex.crt ];
+
+  networking.extraHosts = ''
+    10.102.0.51 portal.si-dr.fr
+    10.102.0.61 signal.si-dr.fr
+    10.102.0.61 signal1.si-dr.fr
+    10.102.0.61 signal2.si-dr.fr
+    10.102.0.61 turn1.si-dr.fr
+    10.102.0.61 turn2.si-dr.fr
+  '';
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
@@ -60,39 +70,46 @@
   };
 
   # Enable the X11 windowing system.
-  services.xserver.enable = true;
-
-  # Enable the GNOME Desktop Environment.
-  services.xserver.displayManager.gdm.enable = true;
-  # services.xserver.desktopManager.gnome.enable = true;
-  services.xserver.desktopManager.gnome.enable = false;
-  services.xserver.desktopManager.xterm.enable = false;
-  services.displayManager.defaultSession = "none+i3";
-
-  services.xserver.windowManager.i3 = {
+  services.xserver = {
     enable = true;
-    package = pkgs.i3;
-    extraPackages = with pkgs; [
-      i3status
-      i3lock
-      rofi
-      polybar
-    ];
+
+    windowManager.i3 = {
+      enable = true;
+      package = pkgs.i3;
+      extraPackages = with pkgs; [
+        i3status
+        i3lock
+        rofi
+      ];
+    };
+
+    xkb = {
+      layout = "us";
+      variant = "";
+      options = "caps:swapescape";
+    };
   };
 
-  services.netbird = {
-    enable = true;
+  services = {
+    netbird.enable = true;
+    fwupd.enable = true;
+    # Enable CUPS to print documents.
+    printing.enable = true;
+    # Enable the OpenSSH daemon.
+    openssh.enable = true;
   };
 
-  # Configure keymap in X11
-  services.xserver.xkb = {
-    layout = "us";
-    variant = "";
-    options = "caps:swapescape";
+  services.displayManager = {
+    defaultSession = "none+i3";
+    ly = {
+      enable = true;
+      package = pkgs.ly;
+      settings = {
+        animation = "matrix";
+      };
+    };
   };
 
-  # Enable CUPS to print documents.
-  services.printing.enable = true;
 
   # Enable sound with pipewire.
   hardware.pulseaudio.enable = false;
@@ -110,6 +127,14 @@
     #media-session.enable = true;
   };
 
+  programs.chromium = {
+    enable = true;
+    extensions = [
+      "cjpalhdlnbpafiamejdnhcphjbkeiagm" # uBlock Origin
+      "gcknhkkoolaabfmlnjonogaaifnjlfnp" # FoxyProxy
+    ];
+  };
+
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
@@ -118,19 +143,20 @@
     isNormalUser = true;
     shell = pkgs.zsh;
     description = "Xavier";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" "video"];
     packages = with pkgs; [
     #  thunderbird
-      signal-desktop
-      obsidian
-    ];
-  };
+    signal-desktop
+    obsidian
+  ];
+};
 
   # Install firefox.
   programs.firefox.enable = true;
   programs.git.enable = true;
 
   programs.vim = {
+    enable = true;
     package = pkgs.vim-full;
     defaultEditor = true;
   };
@@ -141,7 +167,7 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    vim-full # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    vim-full
     wget
     alacritty
     btop
@@ -153,6 +179,8 @@
     nodejs
     clang_12
     clang-tools
+    light
+    chromium
   ];
 
   fonts.packages = with pkgs; [ (nerdfonts.override { fonts = [ "Hack" ]; }) ];
@@ -165,13 +193,8 @@
   #   enableSSHSupport = true;
   # };
 
-  # List services that you want to enable:
-
-  # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
-
   # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
+  networking.firewall.allowedTCPPorts = [ 22 ];
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
@@ -185,10 +208,4 @@
   system.stateVersion = "24.05"; # Did you read the comment?
 
   programs.zsh.enable = true;
-   # enable = true;
-    #enableCompletion = true;
-   # syntaxHighlighting.enable = true;
-   # autosuggestions.enable = false;
-  #  enableLsColors = true;
-  #};
 }

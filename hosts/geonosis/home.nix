@@ -23,6 +23,7 @@
     # # Adds the 'hello' command to your environment. It prints a friendly
     # # "Hello, world!" when run.
     # pkgs.hello
+    element-desktop
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
@@ -82,6 +83,13 @@
       theme = "Dracula";
       italic-text = "always";
     };
+  };
+
+  programs.direnv = {
+    enable = true;
+    nix-direnv.enable = true;
+    silent = false;
+    enableZshIntegration = true;
   };
 
   imports = [
