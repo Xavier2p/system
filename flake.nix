@@ -21,20 +21,15 @@
   outputs = { self, nixpkgs, ... }@inputs:
   let
     system = "x86_64-linux";
-    vars = {
-        # user = "xavier2p";
-        editor = "vim";
-        systemLocation = "$HOME/.system";
-        terminal = "alacritty";
-      };
-      pkgs = nixpkgs.legacyPackages.${system};
+    vars = import ./vars.nix;
+    pkgs = nixpkgs.legacyPackages.${system};
   in
   {
     nixosConfigurations = {
       geonosis = nixpkgs.lib.nixosSystem {
         specialArgs = { inherit inputs; };
         modules = [
-          ./hosts/geonosis/configuration.nix
+          ./hosts/geonosis
           inputs.home-manager.nixosModules.default
         ];
       };

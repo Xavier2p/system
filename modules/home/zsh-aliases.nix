@@ -31,6 +31,9 @@
   make = "make -Bj";
   z = "zellij";
 
+  # Commands
+  cpl = "gcc -Wextra -Wall -Werror -Wvla -std=c99 -pedantic -g -o out *.c";
+
   # Misc
   ":q" = "exit";
 

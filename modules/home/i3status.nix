@@ -10,22 +10,8 @@
       interval = 5;
     };
     modules = {
-      "tztime local" = {
-        enable = true;
-        position = 9;
-        settings = {
-          format = "%Y-%m-%d::%H:%M:%S";
-        };
-      };
       "ipv6" = {
         enable = false;
-      };
-      "disk /" = {
-        enable = true;
-        position = 7;
-        settings = {
-          format = "%avail";
-        };
       };
       "wireless _first_" = {
         enable = true;
@@ -43,13 +29,13 @@
           format_down = "E::down";
         };
       };
-     "memory" = {
+      "cpu_temperature 1" = {
         enable = true;
-        position = 5;
+        position = 3;
         settings = {
-          format = "M::%used (%percentage_used)";
-          threshold_degraded = "2G";
-          format_degraded = "M::%free!!";
+          format = "T::%degrees°";
+          max_threshold = 50;
+          format_above_threshold = "T::%degrees°!!";
         };
       };
       "cpu_usage" = {
@@ -63,13 +49,13 @@
           format_above_degraded_threshold = "CPU::%usage!";
         };
       };
-      "cpu_temperature 0" = {
+     "memory" = {
         enable = true;
-        position = 3;
+        position = 5;
         settings = {
-          format = "T::%degrees°";
-          max_threshold = 50;
-          format_above_threshold = "T::%degrees°!!";
+          format = "M::%used (%percentage_used)";
+          threshold_degraded = "2G";
+          format_degraded = "M::%free!!";
         };
       };
       "load" = {
@@ -77,6 +63,13 @@
         position = 6;
         settings = {
           format = "L::%1min";
+        };
+      };
+      "disk /" = {
+        enable = true;
+        position = 7;
+        settings = {
+          format = "%avail";
         };
       };
       "battery all" = {
@@ -87,6 +80,13 @@
           format_down = "";
           low_threshold = 25;
           threshold_type = "percentage";
+        };
+      };
+      "tztime local" = {
+        enable = true;
+        position = 9;
+        settings = {
+          format = "%Y-%m-%d::%H:%M:%S";
         };
       };
     };

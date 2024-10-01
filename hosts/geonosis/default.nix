@@ -6,9 +6,11 @@
 
 {
   imports =
-    [ # Include the results of the hardware scan.
+    [
     ./hardware.nix
+    ./network.nix
     inputs.home-manager.nixosModules.default
+    ../../modules/os
   ];
 
   # Bootloader.
@@ -16,21 +18,14 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   boot.initrd.luks.devices."luks-67770c13-d64e-4676-8e53-aba49a68d96a".device = "/dev/disk/by-uuid/67770c13-d64e-4676-8e53-aba49a68d96a";
-  networking.hostName = "geonosis"; # Define your hostname.
 
+  # to move to work profile
   security.pki.certificateFiles = [ /home/eagle/Documents/carl/telex.crt ];
 
-  networking.extraHosts = ''
-    10.102.0.51 portal.si-dr.fr
-    10.102.0.61 signal.si-dr.fr
-    10.102.0.61 signal1.si-dr.fr
-    10.102.0.61 signal2.si-dr.fr
-    10.102.0.61 turn1.si-dr.fr
-    10.102.0.61 turn2.si-dr.fr
-  '';
-
+  # in each host file
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
+  # Variabilize the user name and add to template host file
   home-manager = {
     extraSpecialArgs = { inherit inputs; };
     users = {
@@ -38,37 +33,14 @@
     };
   };
 
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-
-  # Enable networking
-  networking.networkmanager.enable = true;
-
-  # Set your time zone.
-  time.timeZone = "Europe/Paris";
-
-  # Select internationalisation properties.
-  i18n.defaultLocale = "en_US.UTF-8";
-
-  i18n.extraLocaleSettings = {
-    LC_ADDRESS = "fr_FR.UTF-8";
-    LC_IDENTIFICATION = "fr_FR.UTF-8";
-    LC_MEASUREMENT = "fr_FR.UTF-8";
-    LC_MONETARY = "fr_FR.UTF-8";
-    LC_NAME = "fr_FR.UTF-8";
-    LC_NUMERIC = "fr_FR.UTF-8";
-    LC_PAPER = "fr_FR.UTF-8";
-    LC_TELEPHONE = "fr_FR.UTF-8";
-    LC_TIME = "fr_FR.UTF-8";
-  };
-
+  # to move to the docker file
   virtualisation = {
     docker = {
       enable = true;
     };
   };
 
+  # to move to the wm file
   # Enable the X11 windowing system.
   services.xserver = {
     enable = true;
@@ -90,15 +62,6 @@
     };
   };
 
-  services = {
-    netbird.enable = true;
-    fwupd.enable = true;
-    # Enable CUPS to print documents.
-    printing.enable = true;
-    # Enable the OpenSSH daemon.
-    openssh.enable = true;
-  };
-
   services.displayManager = {
     defaultSession = "none+i3";
     ly = {
@@ -110,7 +73,17 @@
     };
   };
 
+  # to move to the services file
+  services = {
+    netbird.enable = true;
+    fwupd.enable = true;
+    # Enable CUPS to print documents.
+    printing.enable = true;
+    # Enable the OpenSSH daemon.
+    openssh.enable = true;
+  };
 
+  # to move to the sound file
   # Enable sound with pipewire.
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
@@ -127,6 +100,7 @@
     #media-session.enable = true;
   };
 
+  # to move to the chromium file, with home-manager
   programs.chromium = {
     enable = true;
     extensions = [
@@ -138,6 +112,7 @@
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
+  # to move to the users file
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.eagle = {
     isNormalUser = true;
@@ -145,27 +120,32 @@
     description = "Xavier";
     extraGroups = [ "networkmanager" "wheel" "docker" "video"];
     packages = with pkgs; [
-    #  thunderbird
-    signal-desktop
-    obsidian
+      # Move this packages to the home-manager config
+      signal-desktop
+      obsidian
   ];
 };
 
+  # Static config for Firefox in its own file
   # Install firefox.
   programs.firefox.enable = true;
+
+  # Test if this settings is really necessary (servise already enabled)
   programs.git.enable = true;
 
+  # Verify if this settings are system wide and move it to its own file
   programs.vim = {
     enable = true;
     package = pkgs.vim-full;
     defaultEditor = true;
   };
 
+  # Create a config for nix in os/ and add this configuration to it
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
+  # Remove all unwanted system wide packages and move them to the home-manager config
   # List packages installed in system profile. To search, run:
-  # $ nix search wget
   environment.systemPackages = with pkgs; [
     vim-full
     wget
@@ -183,21 +163,8 @@
     chromium
   ];
 
+  # move this line to the home-manager config
   fonts.packages = with pkgs; [ (nerdfonts.override { fonts = [ "Hack" ]; }) ];
-
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
-
-  # Open ports in the firewall.
-  networking.firewall.allowedTCPPorts = [ 22 ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
@@ -207,5 +174,6 @@
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "24.05"; # Did you read the comment?
 
+  # check if this line is mandatory
   programs.zsh.enable = true;
 }

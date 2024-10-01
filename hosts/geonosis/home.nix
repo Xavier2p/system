@@ -77,19 +77,21 @@
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
-  programs.bat = {
-    enable = true;
-    config = {
-      theme = "Dracula";
-      italic-text = "always";
-    };
-  };
-
   programs.direnv = {
     enable = true;
     nix-direnv.enable = true;
-    silent = false;
+    silent = true;
     enableZshIntegration = true;
+  };
+
+  programs.gh = {
+    enable = true;
+    extensions = with pkgs; [
+      gh-copilot
+    ];
+    settings = {
+      git_protocol = "ssh";
+    };
   };
 
   imports = [
