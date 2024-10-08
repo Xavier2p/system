@@ -7,5 +7,7 @@
     ./git.nix
     ./vscode.nix
     ./i3status.nix
+    ./zellij.nix
+    ./shell-tools.nix
   ];
 }

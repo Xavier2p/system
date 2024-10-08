@@ -10,7 +10,7 @@
     ./hardware.nix
     ./network.nix
     inputs.home-manager.nixosModules.default
-    ../../modules/os
+    ../../nixos
   ];
 
   # Bootloader.
@@ -81,6 +81,7 @@
     printing.enable = true;
     # Enable the OpenSSH daemon.
     openssh.enable = true;
+    usbmuxd.enable = true;
   };
 
   # to move to the sound file
@@ -111,6 +112,17 @@
 
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
+  services.libinput = {
+    enable = true;
+    touchpad.naturalScrolling = true;
+  };
+
+security.pam.services = {
+  login.u2fAuth = true;
+  sudo.u2fAuth = true;
+  ly.u2fAuth = true;
+  i3lock.u2fAuth = true;
+};
 
   # to move to the users file
   # Define a user account. Don't forget to set a password with ‘passwd’.
@@ -118,7 +130,7 @@
     isNormalUser = true;
     shell = pkgs.zsh;
     description = "Xavier";
-    extraGroups = [ "networkmanager" "wheel" "docker" "video"];
+    extraGroups = [ "networkmanager" "wheel" "docker" ];
     packages = with pkgs; [
       # Move this packages to the home-manager config
       signal-desktop
@@ -154,13 +166,13 @@
     netbird
     docker
     starship
-    zellij
     lsd
     nodejs
     clang_12
     clang-tools
-    light
+    brightnessctl
     chromium
+    libimobiledevice
   ];
 
   # move this line to the home-manager config
