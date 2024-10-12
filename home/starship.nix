@@ -26,8 +26,9 @@ $nix_shell$sudo$character";
       battery.disabled = true;
 
       c = {
-        format = "[$symbol]($style) ";
-        symbol = "C";
+        format = "[$symbol $name::$version]($style) ";
+        symbol = "";
+        version_format = "\${raw}";
         style = "bold blue";
       };
 

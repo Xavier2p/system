@@ -85,7 +85,6 @@
   };
 
   # to move to the sound file
-  # Enable sound with pipewire.
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
@@ -111,7 +110,6 @@
   };
 
   # Enable touchpad support (enabled default in most desktopManager).
-  # services.xserver.libinput.enable = true;
   services.libinput = {
     enable = true;
     touchpad.naturalScrolling = true;
@@ -125,7 +123,6 @@ security.pam.services = {
 };
 
   # to move to the users file
-  # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.eagle = {
     isNormalUser = true;
     shell = pkgs.zsh;
@@ -139,7 +136,6 @@ security.pam.services = {
 };
 
   # Static config for Firefox in its own file
-  # Install firefox.
   programs.firefox.enable = true;
 
   # Test if this settings is really necessary (servise already enabled)
@@ -153,20 +149,14 @@ security.pam.services = {
   };
 
   # Create a config for nix in os/ and add this configuration to it
-  # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
   # Remove all unwanted system wide packages and move them to the home-manager config
-  # List packages installed in system profile. To search, run:
   environment.systemPackages = with pkgs; [
     vim-full
     wget
-    alacritty
-    btop
     netbird
     docker
-    starship
-    lsd
     nodejs
     clang_12
     clang-tools
