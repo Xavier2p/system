@@ -1,13 +1,14 @@
-#  Docker
-
-{ config, pkgs, vars, ... }:
-
 {
+  config,
+  pkgs,
+  vars,
+  ...
+}: {
   virtualisation = {
     docker.enable = true;
   };
 
-  users.groups.docker.members = [ "${vars.user}" ];
+  users.groups.docker.members = ["${vars.user}"];
 
   environment.systemPackages = with pkgs; [
     docker

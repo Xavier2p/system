@@ -1,12 +1,13 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-
-{ config, pkgs, inputs, ... }:
-
 {
-  imports =
-    [
+  config,
+  pkgs,
+  inputs,
+  ...
+}: {
+  imports = [
     ./hardware.nix
     ./network.nix
     inputs.home-manager.nixosModules.default
@@ -20,14 +21,14 @@
   boot.initrd.luks.devices."luks-67770c13-d64e-4676-8e53-aba49a68d96a".device = "/dev/disk/by-uuid/67770c13-d64e-4676-8e53-aba49a68d96a";
 
   # to move to work profile
-  security.pki.certificateFiles = [ /home/eagle/Documents/carl/telex.crt ];
+  security.pki.certificateFiles = [/home/eagle/Documents/carl/telex.crt];
 
   # in each host file
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = ["nix-command" "flakes"];
 
   # Variabilize the user name and add to template host file
   home-manager = {
-    extraSpecialArgs = { inherit inputs; };
+    extraSpecialArgs = {inherit inputs;};
     users = {
       "eagle" = import ./home.nix;
     };
@@ -42,28 +43,27 @@
 
   # to move to the wm file
   # Enable the X11 windowing system.
-  services.xserver = {
-    enable = true;
+  # services.xserver = {
+  #   enable = false;
 
-    windowManager.i3 = {
-      enable = true;
-      package = pkgs.i3;
-      extraPackages = with pkgs; [
-        i3status
-        i3lock
-        rofi
-      ];
-    };
+  #   windowManager.i3 = {
+  #     enable = true;
+  #     package = pkgs.i3;
+  #     extraPackages = with pkgs; [
+  #       i3status
+  #       i3lock
+  #       rofi
+  #     ];
+  #   };
 
-    xkb = {
-      layout = "us";
-      variant = "";
-      options = "caps:swapescape";
-    };
-  };
+  #   xkb = {
+  #     layout = "us";
+  #     variant = "";
+  #     options = "caps:swapescape";
+  #   };
+  # };
 
   services.displayManager = {
-    defaultSession = "none+i3";
     ly = {
       enable = true;
       package = pkgs.ly;
@@ -115,25 +115,33 @@
     touchpad.naturalScrolling = true;
   };
 
-security.pam.services = {
-  login.u2fAuth = true;
-  sudo.u2fAuth = true;
-  ly.u2fAuth = true;
-  i3lock.u2fAuth = true;
-};
+  security.pam = {
+    u2f = {
+      enable = true;
+      settings.cue = true;
+      control = "sufficient";
+    };
+    services = {
+      login.u2fAuth = true;
+      sudo.u2fAuth = true;
+      ly.u2fAuth = true;
+      i3lock.u2fAuth = true;
+      hyprlock.u2fAuth = true;
+    };
+  };
 
   # to move to the users file
   users.users.eagle = {
     isNormalUser = true;
     shell = pkgs.zsh;
     description = "Xavier";
-    extraGroups = [ "networkmanager" "wheel" "docker" ];
+    extraGroups = ["networkmanager" "wheel" "docker"];
     packages = with pkgs; [
       # Move this packages to the home-manager config
       signal-desktop
       obsidian
-  ];
-};
+    ];
+  };
 
   # Static config for Firefox in its own file
   programs.firefox.enable = true;
@@ -148,6 +156,19 @@ security.pam.services = {
     defaultEditor = true;
   };
 
+  environment.sessionVariables = {
+    NIXOS_OZONE_WL = "1";
+  };
+  programs.hyprland = {
+    enable = true;
+    package = inputs.hyprland.packages."${pkgs.system}".hyprland;
+    xwayland.enable = true;
+  };
+
+  hardware = {
+    graphics.enable = true;
+    nvidia.modesetting.enable = true;
+  };
   # Create a config for nix in os/ and add this configuration to it
   nixpkgs.config.allowUnfree = true;
 
@@ -166,7 +187,7 @@ security.pam.services = {
   ];
 
   # move this line to the home-manager config
-  fonts.packages = with pkgs; [ (nerdfonts.override { fonts = [ "Hack" ]; }) ];
+  fonts.packages = with pkgs; [(nerdfonts.override {fonts = ["Hack"];})];
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

@@ -18,6 +18,7 @@
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = with pkgs; [
+    # put them in each config file
     element-desktop
     feh
     btop
@@ -80,5 +81,7 @@
   ];
 
   shelltools.enable = true;
-  desktop.enable = true;
+  gui.enable = true;
+  wayland.enable = true;
+  nvim.enable = true;
 }

@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 
 
-let cfg = config.desktop;
+let cfg = config.gui;
 in {
   imports = [
     ./alacritty.nix
@@ -10,7 +10,7 @@ in {
   ];
 
   options = {
-    desktop.enable = lib.mkEnableOption "Desktop Module";
+    gui.enable = lib.mkEnableOption "Desktop GUI Apps";
   };
 
   config = lib.mkIf cfg.enable {

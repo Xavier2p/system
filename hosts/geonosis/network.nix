@@ -18,7 +18,7 @@
 
 
   hosts = {
-    "10.102.0.51" = [ "portal.si-dr.fr" ];
+    "10.103.0.61" = [ "portal.si-dr.fr" ];
     "10.102.0.61" = ["signal.si-dr.fr" "signal1.si-dr.fr" "signal2.si-dr.fr" "turn1.si-dr.fr" "turn2.si-dr.fr"];
   };
 

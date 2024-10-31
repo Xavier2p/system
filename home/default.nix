@@ -1,14 +1,18 @@
-{ config, lib, pkgs, ... }:
-
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}: {
   imports = [
-    ./starship.nix
-    ./zsh.nix
-    ./git.nix
-    ./zellij.nix
-    ./shell-tools.nix
-    ./desktop/default.nix
+    ./gui
+    ./shell
+    ./tui
+    ./wayland
   ];
 
-  desktop.enable = lib.mkDefault false;
+  gui.enable = lib.mkDefault false;
+  shell.enable = lib.mkDefault true;
+  tui.enable = lib.mkDefault true;
+  wayland.enable = lib.mkDefault false;
 }
