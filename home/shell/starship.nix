@@ -119,7 +119,7 @@ $nix_shell$sudo$character";
             ssh_only = true;
             disabled = false;
             format = " [$localipv4]($style)
-          ";
+";
             style = "bold blue";
           };
 
