@@ -54,7 +54,7 @@
         specialArgs = {inherit inputs;};
         modules = [
           ./hosts/mandalore
-          #inputs.home-manager.nixosModules.default
+          inputs.home-manager.nixosModules.default
         ];
       };
     };

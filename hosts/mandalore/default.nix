@@ -1,5 +1,5 @@
 {
-  config,
+  inputs,
   pkgs,
   ...
 }: {
@@ -7,6 +7,7 @@
     ./hardware.nix
     ./network.nix
     ../../nixos
+    inputs.home-manager.nixosModules.default
   ];
 
   # Bootloader.
@@ -18,6 +19,11 @@
     isNormalUser = true;
     description = "System Administrator";
     extraGroups = ["networkmanager" "wheel"];
+  };
+
+  home-manager = {
+    extraSpecialArgs = {inherit inputs;};
+    users.sysadmin = import ./home.nix;
   };
 
   environment.systemPackages = with pkgs; [
