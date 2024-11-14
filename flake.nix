@@ -50,6 +50,13 @@
           inputs.stylix.nixosModules.stylix
         ];
       };
+      mandalore = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs;};
+        modules = [
+          ./hosts/mandalore
+          #inputs.home-manager.nixosModules.default
+        ];
+      };
     };
     # darwinConfiguration."exegol" = darwin.lib.darwinSystem {
     #   system = "aarch64-darwin";
