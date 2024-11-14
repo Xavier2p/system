@@ -1,6 +1,4 @@
-{lib, ...}: let
-  username = "eagle";
-in {
+{lib, ...}: {
   imports = [
     ./gui
     ./shell
@@ -12,9 +10,6 @@ in {
   shell.enable = lib.mkDefault true;
   tui.enable = lib.mkDefault true;
   wayland.enable = lib.mkDefault false;
-
-  home.username = username;
-  home.homeDirectory = "/home/${username}";
 
   nixpkgs.config.allowUnfree = true;
 

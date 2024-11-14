@@ -1,9 +1,10 @@
 {
-  config,
-  pkgs,
-  ...
-}: {
   imports = [./../../home];
+
+  home = {
+    username = "eagle";
+    homeDirectory = "/home/eagle";
+  };
 
   shelltools.enable = true;
   gui.enable = true;
