@@ -1,6 +1,10 @@
-{ config, lib, pkgs, ... }:
-
-let cfg = config.wayland;
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}: let
+  cfg = config.wayland;
 in {
   imports = [
     ./hyprland.nix
@@ -8,6 +12,7 @@ in {
     ./waybar.nix
     ./wlogout.nix
     ./theme.nix
+    ./notifications.nix
   ];
 
   options = {
@@ -17,6 +22,7 @@ in {
   config = lib.mkIf cfg.enable {
     hyprland.enable = lib.mkDefault true;
     hyprlock.enable = lib.mkDefault true;
+    notifications.enable = lib.mkDefault true;
     theme.enable = lib.mkDefault true;
     waybar.enable = lib.mkDefault true;
     wlogout.enable = lib.mkDefault true;

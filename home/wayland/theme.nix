@@ -1,6 +1,8 @@
-{ config, lib, pkgs, ... }:
-
-let
+{
+  config,
+  lib,
+  ...
+}: let
   cfg = config.theme;
   wallpaper = "/home/eagle/Documents/assets/wallpaper.jpg";
 in {
@@ -22,7 +24,7 @@ in {
     services.hyprpaper = {
       enable = true;
       settings = {
-        preload =["${wallpaper}"];
+        preload = ["${wallpaper}"];
         wallpaper = [", ${wallpaper}"];
       };
     };

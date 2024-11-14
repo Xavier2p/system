@@ -1,11 +1,12 @@
-{ config, lib, pkgs, ... }:
-
-let
+{
+  config,
+  lib,
+  ...
+}: let
   cfg = config.shell;
 in {
   imports = [
     ./aliases.nix
-    # ./plugins.nix
     ./starship.nix
     ./zsh.nix
   ];
@@ -16,7 +17,6 @@ in {
 
   config = lib.mkIf cfg.enable {
     aliases.enable = lib.mkDefault true;
-    # plugins = lib.mkDefault true;
     starship.enable = lib.mkDefault true;
     zsh.enable = lib.mkDefault true;
   };

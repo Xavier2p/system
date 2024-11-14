@@ -1,6 +1,9 @@
-{ config, lib, pkgs, ... }:
-
-let cfg = config.alacritty;
+{
+  config,
+  lib,
+  ...
+}: let
+  cfg = config.alacritty;
 in {
   options = {
     alacritty.enable = lib.mkEnableOption "Alacritty Terminal";
@@ -15,7 +18,6 @@ in {
           dynamic_title = true;
           opacity = 0.91;
           startup_mode = "Windowed";
-          title = "πK嘘@geonosis.forge";
           dimensions = {
             columns = 150;
             lines = 50;
@@ -28,12 +30,13 @@ in {
         cursor = {
           blink_interval = 750;
           style = {
-            blinking ="Always";
+            blinking = "Always";
             shape = "Underline";
           };
         };
         font = {
           size = 10;
+          normal.family = "Hack Nerd Font";
         };
       };
     };

@@ -1,6 +1,9 @@
-{ config, lib, pkgs, ... }:
-
-let
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}: let
   cfg = config.aliases;
 in {
   options = {
@@ -17,15 +20,10 @@ in {
       tree = "lsd --tree";
 
       g = "git";
-      gaa = "git add --all";
-      gau = "git add --update";
       gb = "git branch";
       gl = "git log --all --oneline --graph --decorate";
       gp = "git pull; git log --all --oneline --graph --decorate -n 10";
-      gpft = "git push --follow-tags";
       gpsh = "git push";
-      gst = "git status";
-      gsw = "git switch";
 
       mk = "vim Makefile";
       rca = "vim ~/.system/home/shell/aliases.nix";

@@ -1,6 +1,8 @@
-{ config, lib, pkgs, ... }:
-
-let
+{
+  config,
+  lib,
+  ...
+}: let
   cfg = config.waybar;
   betterTransition = "all 0.3s cubic-bezier(.55,-0.68,.48,1.682)";
 in {
@@ -13,7 +15,7 @@ in {
       enable = true;
       systemd.enable = true;
       settings = {
-        mainbar ={
+        mainbar = {
           layer = "top";
           height = 12;
           position = "top";
@@ -81,7 +83,7 @@ in {
               critical = "";
               warning = "";
               normal = "";
-              full ="";
+              full = "";
             };
             states = {
               critical = 25;

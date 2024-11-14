@@ -1,7 +1,10 @@
-{ config, lib, pkgs, ... }:
-
-
-let cfg = config.vscode;
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}: let
+  cfg = config.vscode;
 in {
   options = {
     vscode.enable = lib.mkEnableOption "Visual Studio Code";
@@ -19,12 +22,13 @@ in {
         workbench.startupEditor = "none";
         workbench.iconTheme = "material-icon-theme";
 
-        editor.rulers = [ 80 120 160 ];
+        editor.rulers = [80 120 160];
         editor.tabSize = 2;
         editor.formatOnSave = true;
 
         explorer.confirmDelete = false;
         explorer.confirmDragAndDrop = false;
+        window.menuBarVisibility = "hidden";
 
         update.showReleaseNotes = false;
       };
@@ -39,4 +43,3 @@ in {
     };
   };
 }
-

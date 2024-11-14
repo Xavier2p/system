@@ -12,6 +12,7 @@ in {
     ./theme.nix
     ./options.nix
     ./lightline.nix
+    ./keymapping.nix
   ];
 
   options = {
@@ -24,6 +25,10 @@ in {
       extraPackages = with pkgs; [
         alejandra
       ];
+
+      defaultEditor = true;
+      enableMan = true;
+      viAlias = true;
 
       plugins = {
         cmp = {
@@ -40,8 +45,8 @@ in {
         gitgutter = {
           enable = true;
           signs = {
-            added = "+";
-            modified = "~";
+            added = "|";
+            modified = "|";
             modifiedRemoved = "±";
             removed = "-";
             removedFirstLine = "ø";
@@ -53,12 +58,23 @@ in {
             nixd.enable = true;
             clangd.enable = true;
             bashls.enable = true;
+            markdown_oxide.enable = true;
             rust_analyzer = {
               enable = true;
               installCargo = false;
               installRustc = false;
             };
             ts_ls.enable = true;
+            terraformls.enable = true;
+            ansiblels.enable = true;
+          };
+        };
+        neo-tree = {
+          enable = true;
+          closeIfLastWindow = true;
+          window = {
+            width = 30;
+            autoExpandWidth = false;
           };
         };
         treesitter = {

@@ -2,16 +2,13 @@
   description = "`/forgeOS`: Infrastructure as Nix";
 
   inputs = {
-    # Nix channels
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
-    # NixOS modules for macOS
     # darwin = {
     #   url = "github:lnl7/nix-darwin";
     #   inputs.nixpkgs.follows = "nixpkgs";
     # };
 
-    # Home Manager modules
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -20,11 +17,6 @@
     hyprland.url = "github:hyprwm/Hyprland";
 
     stylix.url = "github:danth/stylix";
-
-    hyprland-plugins = {
-      url = "github:hyprwm/hyprland-plugins";
-      inputs.hyprland.follows = "hyprland";
-    };
 
     nixvim = {
       url = "github:nix-community/nixvim";
@@ -46,6 +38,14 @@
         specialArgs = {inherit inputs;};
         modules = [
           ./hosts/geonosis
+          inputs.home-manager.nixosModules.default
+          inputs.stylix.nixosModules.stylix
+        ];
+      };
+      nevarro = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs;};
+        modules = [
+          ./hosts/nevarro
           inputs.home-manager.nixosModules.default
           inputs.stylix.nixosModules.stylix
         ];

@@ -10,6 +10,24 @@
 This repo contains all of my system configuration for all of my hosts,
 built with Nix.
 
+## Installation
+
+```sh
+nix run github:xavier2p/system#<host>
+```
+
+### Specifics
+
+#### Yubikeys
+
+Add a Yubikey to the system:
+
+```sh
+nix-shell -p pam_u2f
+mkdir -p ~/.config/Yubico
+pamu2fcfg >> ~/.config/Yubico/u2f_keys
+```
+
 ## Dependencies
 
 - [Nix](https://nixos.org/nix/)
@@ -17,3 +35,16 @@ built with Nix.
 - [NixOS](https://nixos.org/)
 - [Home Manager](https://github.com/nix-community/home-manager)
 - [Nix Darwin](https://github.com/LnL7/nix-darwin)
+- [Hyprland](https://hyprland.org/)
+- [Nixvim](https://github.com/nix-community/nixvim)
+- [Stylix](https://github.com/danth/stylix)
+
+## Credits
+
+- [pinpox/nixos](https://github.com/pinpox/nixos)
+- [fufexan/dotfiles](https://github.com/fufexan/dotfiles)
+- [GaetanLepage/nix-config](https://github.com/GaetanLepage/nix-config)
+- [Zaney/zaneyos](https://gitlab.com/Zaney/zaneyos)
+- [poz/niksos](https://git.jacekpoz.pl/poz/niksos)]
+- [nezia/flocon](https://git.nezia.dev/nezia/flocon)
+

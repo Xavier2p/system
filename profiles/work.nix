@@ -2,6 +2,10 @@
   config,
   pkgs,
   ...
-}: {
-  environment.systemPackages = with pkgs; [];
+}: let
+in {
+  git = {
+    userName = "Xavier de Place";
+    userEmail = "";
+  };
 }

@@ -1,6 +1,8 @@
-{ config, lib, pkgs, ... }:
-
-let
+{
+  config,
+  lib,
+  ...
+}: let
   cfg = config.git;
 in {
   options = {
@@ -20,6 +22,7 @@ in {
         gpg.format = "ssh";
         user.signingkey = "~/.ssh/gh-sign.pub";
         init.defaultBranch = "master";
+        color.ui = true;
       };
 
       ignores = [
@@ -42,10 +45,16 @@ in {
       ];
 
       aliases = {
+        a = "add";
+        aa = "add --all";
+        au = "add --update";
         csm = "commit -S -m";
         cm = "commit -m";
         ls = "ls-files";
         t = "tag -ma";
+        pft = "push --follow-tags";
+        st = "status";
+        sw = "switch";
       };
     };
   };

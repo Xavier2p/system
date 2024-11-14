@@ -1,6 +1,9 @@
-{ config, lib, pkgs, inputs, ... }:
-
-let cfg = config.hyprland;
+{
+  config,
+  lib,
+  ...
+}: let
+  cfg = config.hyprland;
 in {
   options = {
     hyprland.enable = lib.mkEnableOption "Hyprland";
@@ -62,7 +65,7 @@ in {
           shadow_render_power = 3;
           "col.shadow" = "rgba(1a1a1aee)";
 
-          blur ={
+          blur = {
             enabled = true;
             size = 3;
             passes = 1;

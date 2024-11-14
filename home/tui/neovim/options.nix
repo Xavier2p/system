@@ -7,6 +7,8 @@
     expandtab = true;
     autoindent = true;
     mouse = "";
+    list = true;
+    listchars = "tab:>─,eol:¬";
 
     colorcolumn = "80";
     cursorline = true;

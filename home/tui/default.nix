@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }: let
   cfg = config.tui;
@@ -18,8 +19,12 @@ in {
 
   config = lib.mkIf cfg.enable {
     git.enable = lib.mkDefault true;
-    nvim.enable = lib.mkDefault false;
+    nvim.enable = lib.mkDefault true;
     shelltools.enable = lib.mkDefault true;
     zellij.enable = lib.mkDefault true;
+
+    home.packages = with pkgs; [
+      wget
+    ];
   };
 }
