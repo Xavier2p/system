@@ -1,4 +1,4 @@
-{
+{pkgs, ...}: {
   networking = {
     hostName = "geonosis";
 
@@ -15,5 +15,12 @@
       allowedTCPPorts = [22];
       # allowedUDPPorts = [ ... ];
     };
+  };
+  security.wrappers.ubridge = {
+    source = "${pkgs.ubridge}/bin/ubridge";
+    capabilities = "cap_net_admin,cap_net_raw=ep";
+    owner = "root";
+    group = "root";
+    permissions = "u+rx,g+x,o+x";
   };
 }

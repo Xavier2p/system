@@ -46,7 +46,7 @@
   programs.firefox.enable = true;
 
   # move this line to the home-manager config
-  fonts.packages = with pkgs; [(nerdfonts.override {fonts = ["Hack"];})];
+  fonts.packages = [pkgs.nerd-fonts.hack];
 
   system.stateVersion = "24.05";
 

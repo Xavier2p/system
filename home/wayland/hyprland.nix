@@ -32,9 +32,6 @@ in {
           "hyprpaper"
           "[workspace 1 silent] alacritty"
           "[workspace 2 silent] firefox"
-          "[workspace 3 silent] obsidian"
-          "[workspace 4 silent] element-desktop"
-          "[workspace 4 silent] signal-desktop"
         ];
 
         "$mainMod" = "SUPER";
@@ -60,10 +57,10 @@ in {
           active_opacity = 1.0;
           inactive_opacity = 1.0;
 
-          drop_shadow = true;
-          shadow_range = 4;
-          shadow_render_power = 3;
-          "col.shadow" = "rgba(1a1a1aee)";
+          #drop_shadow = true;
+          #shadow_range = 4;
+          #shadow_render_power = 3;
+          #"col.shadow" = "rgba(1a1a1aee)";
 
           blur = {
             enabled = true;
@@ -119,6 +116,8 @@ in {
           "$mainMod SHIFT, Left, swapwindow, l"
           "$mainMod SHIFT, Down, swapwindow, d"
           "$mainMod SHIFT, Up, swapwindow, u"
+
+          "$mainMod, f, fullscreen"
 
           "$mainMod, 1, workspace, 1"
           "$mainMod, 2, workspace, 2"

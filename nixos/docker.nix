@@ -32,6 +32,11 @@ in {
           # "unix:///var/run/docker.sock"
           "tcp://${cfg.externalIp}:2375"
         ];
+        log-driver = "json-file";
+        log-opts = {
+          "max-size" = "10m";
+          "max-file" = "3";
+        };
       };
     };
 

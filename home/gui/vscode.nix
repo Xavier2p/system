@@ -31,6 +31,14 @@ in {
         window.menuBarVisibility = "hidden";
 
         update.showReleaseNotes = false;
+        pgsql.connections = [
+          {
+            server = "localhost";
+            database = "roger_roger";
+            user = "postgres";
+            password = "postgres";
+          }
+        ];
       };
 
       extensions = with pkgs.vscode-extensions; [

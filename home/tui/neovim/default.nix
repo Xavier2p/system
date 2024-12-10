@@ -9,10 +9,11 @@
 in {
   imports = [
     inputs.nixvim.homeManagerModules.nixvim
-    ./theme.nix
-    ./options.nix
-    ./lightline.nix
     ./keymapping.nix
+    ./lightline.nix
+    ./lsp.nix
+    ./options.nix
+    ./theme.nix
   ];
 
   options = {
@@ -50,23 +51,6 @@ in {
             modifiedRemoved = "±";
             removed = "-";
             removedFirstLine = "ø";
-          };
-        };
-        lsp = {
-          enable = true;
-          servers = {
-            nixd.enable = true;
-            clangd.enable = true;
-            bashls.enable = true;
-            markdown_oxide.enable = true;
-            rust_analyzer = {
-              enable = true;
-              installCargo = false;
-              installRustc = false;
-            };
-            ts_ls.enable = true;
-            terraformls.enable = true;
-            ansiblels.enable = true;
           };
         };
         neo-tree = {

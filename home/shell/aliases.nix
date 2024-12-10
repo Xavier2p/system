@@ -25,8 +25,8 @@ in {
       gp = "git pull; git log --all --oneline --graph --decorate -n 10";
       gpsh = "git push";
 
-      mk = "vim Makefile";
-      rca = "vim ~/.system/home/shell/aliases.nix";
+      mk = "nvim Makefile";
+      rca = "nvim ~/.system/home/shell/aliases.nix";
 
       dk = "docker";
       dkc = "docker-compose";
@@ -34,6 +34,7 @@ in {
       tf = "terraform";
       make = "make -Bj";
       z = "zellij";
+      v = "nvim";
 
       cpl = "gcc -Wextra -Wall -Werror -Wvla -std=c99 -pedantic -g -o out *.c";
 
