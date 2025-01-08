@@ -23,7 +23,7 @@ in {
   };
 
   # Enable Sound
-  hardware.pulseaudio.enable = false;
+  services.pulseaudio.enable = lib.mkDefault false;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = false;

@@ -26,6 +26,13 @@
     users.sysadmin = import ./home.nix;
   };
 
+  docker = {
+    enable = true;
+    dns = false;
+    expose = true;
+    externalIp = "100.97.75.250";
+  };
+
   services.openssh.enable = true;
   services.netbird.enable = true;
   programs.zsh.enable = true;

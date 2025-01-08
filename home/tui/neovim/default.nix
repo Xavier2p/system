@@ -45,12 +45,12 @@ in {
         };
         gitgutter = {
           enable = true;
-          signs = {
-            added = "|";
-            modified = "|";
-            modifiedRemoved = "±";
-            removed = "-";
-            removedFirstLine = "ø";
+          settings = {
+            sign_added = "|";
+            sign_modified = "|";
+            sign_modified_removed = "±";
+            sign_removed = "-";
+            sign_removed_firstLine = "ø";
           };
         };
         neo-tree = {

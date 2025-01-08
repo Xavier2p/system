@@ -20,7 +20,8 @@ in {
           gaps_in = 3;
           gaps_out = 6;
           border_size = 1;
-          "col.active_border" = "rgba(33ccffee) rgba(00ff99ee) 45deg";
+          #"col.active_border" = "rgba(33ccffee) rgba(00ff99ee) 45deg";
+          "col.active_border" = "rgba(ff4d00ee)";
           "col.inactive_border" = "rgba(595959aa)";
           resize_on_border = false;
           allow_tearing = false;

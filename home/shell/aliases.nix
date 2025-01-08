@@ -5,6 +5,8 @@
   ...
 }: let
   cfg = config.aliases;
+  ls = "lsd";
+  editor = "nvim";
 in {
   options = {
     aliases.enable = lib.mkEnableOption true;
@@ -12,12 +14,12 @@ in {
 
   config = lib.mkIf cfg.enable {
     programs.zsh.shellAliases = {
-      ls = "lsd";
-      la = "lsd --almost-all";
-      l = "lsd --long --git --human-readable --almost-all";
-      ll = "lsd --long --human-readable";
-      lll = "lsd --almost-all --long --human-readable";
-      tree = "lsd --tree";
+      ls = "${ls}";
+      la = "${ls} --almost-all";
+      l = "${ls} --long --git --human-readable --almost-all";
+      ll = "${ls} --long --human-readable";
+      lll = "${ls} --almost-all --long --human-readable";
+      tree = "${ls} --tree";
 
       g = "git";
       gb = "git branch";
@@ -25,8 +27,8 @@ in {
       gp = "git pull; git log --all --oneline --graph --decorate -n 10";
       gpsh = "git push";
 
-      mk = "nvim Makefile";
-      rca = "nvim ~/.system/home/shell/aliases.nix";
+      mk = "${editor} Makefile";
+      rca = "${editor} ~/.system/home/shell/aliases.nix";
 
       dk = "docker";
       dkc = "docker-compose";
@@ -34,7 +36,7 @@ in {
       tf = "terraform";
       make = "make -Bj";
       z = "zellij";
-      v = "nvim";
+      v = "${editor}";
 
       cpl = "gcc -Wextra -Wall -Werror -Wvla -std=c99 -pedantic -g -o out *.c";
 

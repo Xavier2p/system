@@ -24,6 +24,10 @@ in {
           {
             monitor = "";
             path = "/home/eagle/Documents/assets/wallpaper.jpg";
+            blur_passes = 2;
+            brightness = 0.5;
+            contrast = 1;
+            vibrancy = 0.2;
           }
         ];
         label = [
@@ -41,7 +45,7 @@ in {
           }
           {
             monitor = "";
-            text = "cmd[update:3600000] date +'%a %b %d'";
+            text = "Insert your physical token";
             #inherit font_family;
             font_size = 20;
             #color = "rgb(${c.primary})";

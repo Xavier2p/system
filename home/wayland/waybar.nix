@@ -122,7 +122,7 @@ in {
 
       style = ''
         * {
-          font-size: 12px;
+          font-size: 10px;
           border-radius: 0px;
           border: none;
           min-height: 0px;

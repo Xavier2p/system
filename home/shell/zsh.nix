@@ -1,6 +1,8 @@
-{ config, lib, pkgs, ... }:
-
-let
+{
+  config,
+  lib,
+  ...
+}: let
   cfg = config.zsh;
 in {
   options = {

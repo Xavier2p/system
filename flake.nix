@@ -47,7 +47,6 @@
         modules = [
           ./hosts/nevarro
           inputs.home-manager.nixosModules.default
-          inputs.stylix.nixosModules.stylix
         ];
       };
       mandalore = nixpkgs.lib.nixosSystem {
@@ -58,28 +57,12 @@
         ];
       };
     };
-    # darwinConfiguration."exegol" = darwin.lib.darwinSystem {
+    # darwinConfiguration.exegol = darwin.lib.darwinSystem {
     #   system = "aarch64-darwin";
     #   pkgs = import nixpkgs { system = "aarch64-darwin"; };
     #   modules = [
-    #     # ./hosts/exegol/configuration.nix
-    #     ({ pkgs, ... }: {
-    #       # system.stateVersion = "4";
-    #       systemPackages = with pkgs; [ sl ];
-    #       programs.bat.enable = true;
-    #     })
+    #     ./hosts/exegol
     #     home-manager.darwinModules.home-manager
-    #     {
-    #       home-manager = {
-    #         useGlobalPkgs = true;
-    #         useUserPackages = true;
-    #         users."xavier2p" = {
-    #           imports = [
-    #             ./home/configuration.nix
-    #           ];
-    #         };
-    #       };
-    #     }
     #   ];
     # };
   };
