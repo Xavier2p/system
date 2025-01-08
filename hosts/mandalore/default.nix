@@ -30,7 +30,7 @@
     enable = true;
     dns = false;
     expose = true;
-    externalIp = "100.97.75.250";
+    externalIp = "0.0.0.0";
   };
 
   services.openssh.enable = true;
