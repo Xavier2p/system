@@ -97,6 +97,8 @@ in {
 
           ", XF86MonBrightnessDown, exec, brightnessctl set 10%-"
           ", XF86MonBrightnessUp, exec, brightnessctl set 10%+"
+          "SHIFT, XF86MonBrightnessDown, exec, brightnessctl -d 'tpacpi::kbd_backlight' set 0"
+          "SHIFT, XF86MonBrightnessUp, exec, brightnessctl -d 'tpacpi::kbd_backlight' set 2"
 
           "$mainMod, L, movefocus, r"
           "$mainMod, H, movefocus, l"

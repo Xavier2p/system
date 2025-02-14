@@ -37,9 +37,9 @@
     programs.btop.enable = true;
     programs.lsd.enable = true;
 
-    programs.vim = {
-      enable = true;
-      defaultEditor = false;
-    };
+    #    programs.vim = {
+    #enable = true;
+    #      defaultEditor = false;
+    #};
   };
 }

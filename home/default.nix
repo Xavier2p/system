@@ -15,19 +15,15 @@
 
   home.stateVersion = "24.05";
 
-  home.packages = [
-    # (pkgs.writeShellScriptBin "my-hello" ''
-    #   echo "Hello, ${config.home.username}!"
-    # '')
-  ];
+  home.packages = [];
 
   home.file = {
-    # ".screenrc".source = dotfiles/screenrc;
-
-    # ".gradle/gradle.properties".text = ''
-    #   org.gradle.console=verbose
-    #   org.gradle.daemon.idletimeout=3600000
-    # '';
+    ".config/nixpkgs/config.nix".text = ''
+      {
+        allowUnfree = true;
+        allowBroken = false;
+      }
+    '';
   };
 
   home.sessionVariables = {};

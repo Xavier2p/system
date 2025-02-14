@@ -35,7 +35,7 @@ in {
           };
         };
         font = {
-          size = 10;
+          size = 9;
           normal.family = "Hack Nerd Font";
         };
       };

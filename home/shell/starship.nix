@@ -21,7 +21,7 @@ in {
           add_newline = true;
           scan_timeout = 10;
           right_format = "$cmd_duration$jobs";
-          format = "$username$hostname$localip$os$directory$git_branch$git_commit$git_status$container$c$rust$golang$python$nodejs$java$php$dotnet$elixir$erlang$gcloud$kubernetes$aws$package$terraform$docker_context$fill$memory_usage
+          format = "$username$hostname$localip$os$directory$git_branch$git_commit$git_status$container$c$rust$golang$python$nodejs$java$php$dotnet$elixir$erlang$gcloud$aws$package$terraform$docker_context$kubernetes$fill$memory_usage
 $nix_shell$sudo$character";
           continuation_prompt = "➜";
           palette = "main";
@@ -115,6 +115,16 @@ $nix_shell$sudo$character";
             number_threshold = 1;
           };
 
+          java = {
+            format = "[$symbol$version]($style) ";
+            symbol = "jdk-";
+            version_format = "v$major";
+          };
+
+          kubernetes = {
+            disabled = false;
+          };
+
           localip = {
             ssh_only = true;
             disabled = false;
@@ -138,8 +148,8 @@ $nix_shell$sudo$character";
           };
 
           nodejs = {
-            format = "[$symbol]($style) ";
-            symbol = "";
+            format = "[$symbol$version]($style) ";
+            symbol = "node-";
             version_format = "v\${major}";
             style = "bold green";
           };
@@ -168,10 +178,10 @@ $nix_shell$sudo$character";
 
           package = {
             disabled = false;
-            format = "[$symbol$version]($style) ";
+            format = "[- $symbol v$version]($style) ";
             style = "dimmed orange";
             version_format = "\${raw}";
-            symbol = " ";
+            symbol = "";
             display_private = true;
           };
 

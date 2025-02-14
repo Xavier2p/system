@@ -14,6 +14,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    #    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+
     hyprland.url = "github:hyprwm/Hyprland";
 
     stylix.url = "github:danth/stylix";
@@ -40,6 +42,7 @@
           ./hosts/geonosis
           inputs.home-manager.nixosModules.default
           inputs.stylix.nixosModules.stylix
+          # inputs.nixos-hardware.nixosModules.lenovo-thinkpad-e14-intel
         ];
       };
       nevarro = nixpkgs.lib.nixosSystem {
