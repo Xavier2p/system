@@ -4,10 +4,10 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
-    # darwin = {
-    #   url = "github:lnl7/nix-darwin";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
+    darwin = {
+      url = "github:lnl7/nix-darwin";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -25,6 +25,7 @@
   outputs = {
     self,
     nixpkgs,
+    darwin,
     ...
   } @ inputs: let
     system = "x86_64-linux";
@@ -54,13 +55,14 @@
         ];
       };
     };
-    # darwinConfiguration.exegol = darwin.lib.darwinSystem {
-    #   system = "aarch64-darwin";
-    #   pkgs = import nixpkgs { system = "aarch64-darwin"; };
-    #   modules = [
-    #     ./hosts/exegol
-    #     home-manager.darwinModules.home-manager
-    #   ];
-    # };
+    darwinConfigurations.exegol = darwin.lib.darwinSystem {
+      system = "aarch64-darwin";
+      specialArgs = {inherit inputs;};
+      pkgs = import nixpkgs { system = "aarch64-darwin"; };
+      modules = [
+        ./hosts/exegol
+        inputs.home-manager.darwinModules.home-manager
+      ];
+    };
   };
 }
