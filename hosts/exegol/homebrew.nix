@@ -1,6 +1,4 @@
-{ pkgs, ... }:
-
-{
+{pkgs, ...}: {
   homebrew = {
     enable = true;
     caskArgs.no_quarantine = true;
@@ -17,8 +15,8 @@
       "vlc"
     ];
     # Homebrew taps to install
-    taps = [ ];
+    taps = [];
     # Homebrew packages to install
-    brews = [ ];
+    brews = [];
   };
 }

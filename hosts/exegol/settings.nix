@@ -1,22 +1,20 @@
-{ ... }:
-
-{
-   system = {
+{...}: {
+  system = {
     primaryUser = "xavier2p";
 
-  #   defaults = {
-  #     NSGlobalDomain = {
-  #       AppleShowAllExtensions = true;
-  #       AppleShowScrollBars = "Automatic";
-  #       AppleShowAllFiles = true;
-  #     };
+    #   defaults = {
+    #     NSGlobalDomain = {
+    #       AppleShowAllExtensions = true;
+    #       AppleShowScrollBars = "Automatic";
+    #       AppleShowAllFiles = true;
+    #     };
 
-  #     dock = {
-  #       autohide = true;
-  #       show-recents = false;
-  #     };
-  #   };
-   };
+    #     dock = {
+    #       autohide = true;
+    #       show-recents = false;
+    #     };
+    #   };
+  };
 
   # keyboard = {
   #   enableKeyMapping = true;

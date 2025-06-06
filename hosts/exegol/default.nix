@@ -1,8 +1,5 @@
 # Apple related things, for macOS
-
-{ pkgs, ... }:
-
-{
+{pkgs, ...}: {
   imports = [
     ./homebrew.nix
     ./settings.nix
@@ -19,7 +16,7 @@
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
-    # users.xavier2p = import ./home.nix;
+    users.xavier2p = import ./home.nix;
   };
 
   system.stateVersion = 6;
