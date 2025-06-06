@@ -26,6 +26,7 @@ in {
       signal-desktop
       obsidian
       feh
+      jetbrains.pycharm-professional
     ];
   };
 }

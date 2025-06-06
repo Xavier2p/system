@@ -11,8 +11,8 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    programs.vscode = {
-      enable = true;
+    programs.vscode.enable = true;
+    programs.vscode.profiles.default = {
       enableExtensionUpdateCheck = false;
       enableUpdateCheck = false;
 
@@ -21,14 +21,20 @@ in {
 
         workbench.startupEditor = "none";
         workbench.iconTheme = "material-icon-theme";
+        workbench.layoutControl.enabled = false;
 
         editor.rulers = [80 120 160];
         editor.tabSize = 2;
         editor.formatOnSave = true;
+        editor.fontSize = 12;
+        window.zoomLevel = -1;
 
         explorer.confirmDelete = false;
         explorer.confirmDragAndDrop = false;
         window.menuBarVisibility = "hidden";
+        window.commandCenter = true;
+
+        chat.commandCenter.enabled = false;
 
         update.showReleaseNotes = false;
         pgsql.connections = [
@@ -45,8 +51,10 @@ in {
         hashicorp.terraform
         pkief.material-icon-theme
         github.copilot
-        github.copilot-chat # azemoh.one-monokai
+        redhat.ansible
         esbenp.prettier-vscode
+        vscodevim.vim
+        usernamehw.errorlens
       ];
     };
   };

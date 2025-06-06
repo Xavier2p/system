@@ -1,7 +1,7 @@
 {
   programs.nixvim.colorschemes = {
     catppuccin = {
-      enable = true;
+      enable = false;
       settings = {
         color_overrides = {
           mocha = {
@@ -35,5 +35,7 @@
         };
       };
     };
+
+    nightfox.enable = true;
   };
 }

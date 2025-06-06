@@ -14,19 +14,7 @@
       ts_ls.enable = true;
       terraformls.enable = true;
       ansiblels.enable = true;
-      sqls = {
-        enable = true;
-        settings = {
-          command = "sqls";
-          connections = [
-            {
-              driver = "postgresql";
-              dataSourceName = "host=127.0.0.1 port=5432 user=postgres password=postgres dbname=roger_roger sslmode=disable";
-              alias = "sql-workshop";
-            }
-          ];
-        };
-      };
+      metals.enable = true;
       gitlab_ci_ls = {
         enable = true;
         package = pkgs.gitlab-ci-ls;

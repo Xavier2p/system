@@ -70,11 +70,12 @@ in {
         };
         telescope = {
           enable = true;
+          settings.layout_config.prompt_position = "top";
         };
         web-devicons.enable = true;
         rainbow-delimiters.enable = true;
         fugitive.enable = true;
-        #copilot-vim.enable = true;
+        # copilot-vim.enable = true;
         conform-nvim = {
           enable = true;
           settings = {

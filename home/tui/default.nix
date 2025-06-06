@@ -1,7 +1,6 @@
 {
   config,
   lib,
-  pkgs,
   ...
 }: let
   cfg = config.tui;
@@ -10,7 +9,8 @@ in {
     ./git.nix
     ./neovim
     ./dev
-    ./shell-tools.nix
+    ./iamb.nix
+    ./tools.nix
     ./zellij.nix
   ];
 
@@ -24,9 +24,6 @@ in {
     shelltools.enable = lib.mkDefault true;
     zellij.enable = lib.mkDefault true;
     dev.enable = lib.mkDefault false;
-
-    home.packages = with pkgs; [
-      wget
-    ];
+    iamb.enable = lib.mkDefault false;
   };
 }

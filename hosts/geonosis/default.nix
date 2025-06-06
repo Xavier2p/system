@@ -12,13 +12,35 @@
   ];
 
   # Bootloader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  boot = {
+    loader.systemd-boot.enable = true;
+    loader.efi.canTouchEfiVariables = true;
+    plymouth = {
+      enable = true;
+      theme = "cuts";
+      themePackages = with pkgs; [
+        (adi1090x-plymouth-themes.override {
+          selected_themes = ["cuts"];
+        })
+      ];
+    };
+
+    consoleLogLevel = 3;
+    initrd.verbose = false;
+  };
 
   boot.initrd.luks.devices."luks-67770c13-d64e-4676-8e53-aba49a68d96a".device = "/dev/disk/by-uuid/67770c13-d64e-4676-8e53-aba49a68d96a";
 
   # to move to work profile
-  security.pki.certificateFiles = [/home/eagle/Documents/carl/telex.crt];
+  security.pki.certificateFiles = [
+    /home/eagle/.nixnotsync/certs/telex.crt
+    /home/eagle/.nixnotsync/certs/multi.crt
+  ];
+
+  virtualisation.libvirtd.enable = true;
+  virtualisation.spiceUSBRedirection.enable = true;
+  users.groups.libvirtd.members = ["eagle"];
+  programs.virt-manager.enable = true;
 
   # to move to the users file
   users.users.eagle = {

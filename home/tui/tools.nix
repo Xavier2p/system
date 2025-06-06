@@ -59,20 +59,21 @@
       skim = {
         enable = true;
         enableZshIntegration = true;
-        defaultOptions = ["--ansi" "--height 1" "--prompt -"];
-        historyWidgetOptions = ["--height 1" "--prompt h>"];
+        defaultOptions = ["--ansi" "--height 1" "--reverse"];
+        historyWidgetOptions = ["--ansi" "--height 1" "--prompt h>"];
       };
-    };
 
-    yazi = {
-      enable = true;
-      enableZshIntegration = true;
+      yazi = {
+        enable = true;
+        enableZshIntegration = true;
+      };
     };
 
     home.packages = with pkgs; [
       wget
       dua
       dust
+      presenterm
     ];
   };
 }

@@ -1,11 +1,10 @@
 {
   config,
   lib,
-  pkgs,
   ...
 }: let
   cfg = config.aliases;
-  ls = "lsd";
+  ls = "eza";
   editor = "nvim";
 in {
   options = {
@@ -16,29 +15,36 @@ in {
     programs.zsh.shellAliases = {
       ls = "${ls}";
       la = "${ls} --almost-all";
-      l = "${ls} --long --git --human-readable --almost-all";
-      ll = "${ls} --long --human-readable";
-      lll = "${ls} --almost-all --long --human-readable";
+      l = "${ls} --long --almost-all --octal-permissions --header";
+      ll = "${ls} --long --header";
       tree = "${ls} --tree";
 
       g = "git";
-      gb = "git branch";
-      gl = "git log --all --oneline --graph --decorate";
-      gp = "git pull; git log --all --oneline --graph --decorate -n 10";
-      gpsh = "git push";
 
       mk = "${editor} Makefile";
       rca = "${editor} ~/.system/home/shell/aliases.nix";
 
       dk = "docker";
       dkc = "docker-compose";
-      kb = "kubectl";
+      k = "kubectl";
+      kn = "kubectl config set-context minikube --namespace";
       tf = "terraform";
+      ai = "ansible-inventory";
+      ap = "ansible-playbook";
+      nb = "netbird";
       make = "make -Bj";
-      z = "zellij";
       v = "${editor}";
 
-      cpl = "gcc -Wextra -Wall -Werror -Wvla -std=c99 -pedantic -g -o out *.c";
+      # Oxydize
+      cat = "bat";
+      ncdu = "dua i";
+      grep = "rg";
+      find = "fd";
+      fzf = "sk";
+      du = "dust";
+
+      # Oneliners
+      pskill = "ps aux | sk | awk '{print $2}' | xargs -r kill";
 
       ":q" = "exit";
     };

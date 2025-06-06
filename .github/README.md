@@ -45,6 +45,6 @@ pamu2fcfg >> ~/.config/Yubico/u2f_keys
 - [fufexan/dotfiles](https://github.com/fufexan/dotfiles)
 - [GaetanLepage/nix-config](https://github.com/GaetanLepage/nix-config)
 - [Zaney/zaneyos](https://gitlab.com/Zaney/zaneyos)
-- [poz/niksos](https://git.jacekpoz.pl/poz/niksos)]
+- [poz/niksos](https://git.jacekpoz.pl/poz/niksos)
 - [nezia/flocon](https://git.nezia.dev/nezia/flocon)
 

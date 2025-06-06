@@ -123,6 +123,9 @@ $nix_shell$sudo$character";
 
           kubernetes = {
             disabled = false;
+            # format = "[$symbol$user@$cluster:$context/$namespace]($style)";
+            format = "[$symbol$context/$namespace]($style)";
+            style = "bold blue";
           };
 
           localip = {

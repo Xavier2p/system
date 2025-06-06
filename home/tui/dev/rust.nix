@@ -11,14 +11,6 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    home.packages = with pkgs; [
-      cargo
-      rustfmt
-      rustc
-      clippy
-      cargo-watch
-    ];
-
-    programs.bacon.enable = true;
+    home.packages = with pkgs; [cargo rustc];
   };
 }

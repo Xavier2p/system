@@ -20,6 +20,16 @@ in {
             url = "https://chat.p.ki";
           };
         };
+        settings = {
+          notifications = {
+            enabled = true;
+            via = "bell";
+          };
+          users = {
+            "@myn:p.ki".color = "yellow";
+            "@x:p.ki".color = "green";
+          };
+        };
       };
     };
   };
