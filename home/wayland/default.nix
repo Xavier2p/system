@@ -7,13 +7,10 @@
   cfg = config.wayland;
 in {
   imports = [
-    ./hyprland.nix
-    ./lockscreen.nix
-    ./waybar.nix
-    ./wlogout.nix
+    ./lock.nix
+    ./bars.nix
     ./theme.nix
     ./notifications.nix
-    ./sway.nix
     ./keyboard.nix
   ];
 
@@ -22,18 +19,27 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    hyprland.enable = lib.mkDefault false;
-    hyprlock.enable = lib.mkDefault true;
+    lock.enable = lib.mkDefault true;
     notifications.enable = lib.mkDefault true;
     theme.enable = lib.mkDefault true;
-    waybar.enable = lib.mkDefault true;
-    wlogout.enable = lib.mkDefault true;
-    sway.enable = lib.mkDefault true;
+    bars.enable = lib.mkDefault true;
+
+    wayland.windowManager.sway = {
+      enable = true;
+      systemd.enable = true;
+      wrapperFeatures.gtk = true;
+      checkConfig = true;
+      config = {
+        defaultWorkspace = "workspace number 1";
+        output = {
+          "eDP-1" = {
+            mode = "1920x1200@60.002Hz";
+          };
+        };
+      };
+    };
 
     home.packages = with pkgs; [
-      waybar
-      dunst
-      wlogout
       rofi
       brightnessctl
     ];

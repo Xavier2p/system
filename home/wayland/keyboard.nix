@@ -30,6 +30,7 @@ in {
       "XF86MonBrightnessUp" = "exec brightnessctl set 10%+";
       "Shift+XF86MonBrightnessDown" = "exec brightnessctl -d 'tpacpi::kbd_backlight' set 0";
       "Shift+XF86MonBrightnessUp" = "exec brightnessctl -d 'tpacpi::kbd_backlight' set 2";
+      "${modifier}+r" = "mode resize";
       # Focus next window
       "${modifier}+l" = "focus right";
       "${modifier}+h" = "focus left";

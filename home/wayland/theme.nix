@@ -21,15 +21,13 @@ in {
       gtk-application-prefer-dark-theme=1
     '';
 
-    services.hyprpaper = {
-      enable = false;
-      settings = {
-        preload = ["${wallpaper}"];
-        wallpaper = [", ${wallpaper}"];
-      };
-    };
-
     wayland.windowManager.sway.config = {
+      startup = [
+        {
+          command = "swaymsg output '*' bg /home/eagle/Documents/assets/wallpaper.jpg fill";
+          always = true;
+        }
+      ];
       colors = {
         background = "#000000";
         focused = {

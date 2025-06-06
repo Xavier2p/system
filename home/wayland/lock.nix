@@ -3,13 +3,20 @@
   lib,
   ...
 }: let
-  cfg = config.wlogout;
+  cfg = config.lock;
 in {
   options = {
-    wlogout.enable = lib.mkEnableOption "Wlogout Power Menu";
+    lock.enable = lib.mkEnableOption "Power menu and Lockscreen";
   };
 
   config = lib.mkIf cfg.enable {
+    programs.swaylock = {
+      enable = true;
+      settings = {
+        image = "/home/eagle/Documents/assets/wallpaper.jpg";
+      };
+    };
+
     programs.wlogout = {
       enable = true;
 

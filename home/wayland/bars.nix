@@ -3,14 +3,16 @@
   lib,
   ...
 }: let
-  cfg = config.waybar;
+  cfg = config.bars;
   betterTransition = "all 0.3s cubic-bezier(.55,-0.68,.48,1.682)";
 in {
   options = {
-    waybar.enable = lib.mkEnableOption "Waybar";
+    bars.enable = lib.mkEnableOption "Sway Bars";
   };
 
   config = lib.mkIf cfg.enable {
+    wayland.windowManager.sway.config.bars = [];
+
     programs.waybar = {
       enable = true;
       systemd = {
@@ -24,7 +26,7 @@ in {
           position = "top";
           margin-top = 0;
 
-          modules-left = ["clock" "network"];
+          modules-left = ["clock" "network" "sway/mode"];
           modules-center = ["sway/workspaces"];
           modules-right = ["temperature" "cpu" "memory" "disk" "battery"];
 
@@ -117,8 +119,9 @@ in {
               urgent = " ";
               empty = "";
             };
-            #on-scroll-up = "hyprctl dispatch workspace e+1";
-            #on-scroll-down = "hyprctl dispatch workspace e-1";
+          };
+          "sway/mode" = {
+            format = "mode::{}";
           };
         };
       };
@@ -182,7 +185,7 @@ in {
           padding: 0px 15px;
           border-radius: 16px;
         }
-        #clock, #network {
+        #clock, #network, #mode {
           background-color: rgba(0, 0, 0, 0.5);
           margin: 3px 0px 0px 4px;
           padding: 0px 15px;
