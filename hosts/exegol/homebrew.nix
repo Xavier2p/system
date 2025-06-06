@@ -9,7 +9,6 @@
       "android-file-transfer"
       "appcleaner"
       "arc"
-      "insomnia"
       "obsidian"
       "raycast"
       "vlc"

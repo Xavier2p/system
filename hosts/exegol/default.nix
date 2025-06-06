@@ -1,6 +1,7 @@
 # Apple related things, for macOS
-{pkgs, ...}: {
+{pkgs, inputs, ...}: {
   imports = [
+    inputs.home-manager.darwinModules.home-manager
     ./homebrew.nix
     ./settings.nix
   ];
@@ -14,7 +15,8 @@
   };
 
   home-manager = {
-    useGlobalPkgs = true;
+    # useGlobalPkgs = true;
+    extraSpecialArgs = {inherit inputs;};
     useUserPackages = true;
     users.xavier2p = import ./home.nix;
   };

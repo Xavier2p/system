@@ -14,8 +14,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # hyprland.url = "github:hyprwm/Hyprland";
-
     nixvim = {
       url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -56,8 +54,8 @@
       };
     };
     darwinConfigurations.exegol = darwin.lib.darwinSystem {
-      system = "aarch64-darwin";
       specialArgs = {inherit inputs;};
+      system = "aarch64-darwin";
       pkgs = import nixpkgs { system = "aarch64-darwin"; };
       modules = [
         ./hosts/exegol

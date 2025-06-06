@@ -28,7 +28,7 @@
       };
 
       gh = {
-        enable = true;
+        enable = false; # true;
         extensions = with pkgs; [gh-copilot];
         settings = {
           git_protocol = "ssh";
