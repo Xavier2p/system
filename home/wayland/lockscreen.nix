@@ -5,13 +5,18 @@
 }: let
   cfg = config.hyprlock;
 in {
-  options = {
-    hyprlock.enable = lib.mkEnableOption "Hyprlock";
-  };
+  options.hyprlock.enable = lib.mkEnableOption "Lock Screen";
 
   config = lib.mkIf cfg.enable {
-    programs.hyprlock = {
+    programs.swaylock = {
       enable = true;
+      settings = {
+        image = "/home/eagle/Documents/assets/wallpaper.jpg";
+      };
+    };
+
+    programs.hyprlock = {
+      enable = false;
 
       settings = {
         general = {
@@ -43,18 +48,18 @@ in {
             valign = "center";
             halign = "center";
           }
-          {
-            monitor = "";
-            text = "Insert your physical token";
-            #inherit font_family;
-            font_size = 20;
-            #color = "rgb(${c.primary})";
+          # {
+          #   monitor = "";
+          #   text = "Insert your physical token";
+          #   #inherit font_family;
+          #   font_size = 20;
+          #   #color = "rgb(${c.primary})";
 
-            position = "0, 50";
+          #   position = "0, 50";
 
-            valign = "center";
-            halign = "center";
-          }
+          #   valign = "center";
+          #   halign = "center";
+          # }
         ];
       };
     };

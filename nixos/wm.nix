@@ -44,9 +44,24 @@ in {
 
     environment.sessionVariables = {NIXOS_OZONE_WL = "1";};
     programs.hyprland = {
-      enable = true;
+      enable = false;
       package = inputs.hyprland.packages."${pkgs.system}".hyprland;
       xwayland.enable = true;
+    };
+
+    programs.sway = {
+      enable = true;
+      wrapperFeatures.gtk = true;
+      xwayland.enable = true;
+    };
+
+    xdg.portal = {
+      enable = true;
+      wlr.enable = true;
+      xdgOpenUsePortal = true;
+      # extraPortals = [
+      #   pkgs.xdg-desktop-portal-wlr
+      # ];
     };
 
     hardware = {

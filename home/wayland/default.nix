@@ -8,11 +8,13 @@
 in {
   imports = [
     ./hyprland.nix
-    ./hyprlock.nix
+    ./lockscreen.nix
     ./waybar.nix
     ./wlogout.nix
     ./theme.nix
     ./notifications.nix
+    ./sway.nix
+    ./keyboard.nix
   ];
 
   options = {
@@ -20,24 +22,20 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    hyprland.enable = lib.mkDefault true;
+    hyprland.enable = lib.mkDefault false;
     hyprlock.enable = lib.mkDefault true;
     notifications.enable = lib.mkDefault true;
     theme.enable = lib.mkDefault true;
     waybar.enable = lib.mkDefault true;
     wlogout.enable = lib.mkDefault true;
+    sway.enable = lib.mkDefault true;
 
     home.packages = with pkgs; [
-      hyprlock
-      hypridle
-      hyprpaper
       waybar
       dunst
       wlogout
       rofi
       brightnessctl
-      # qt6-wayland
-      # qt5-wayland
     ];
   };
 }

@@ -22,10 +22,46 @@ in {
     '';
 
     services.hyprpaper = {
-      enable = true;
+      enable = false;
       settings = {
         preload = ["${wallpaper}"];
         wallpaper = [", ${wallpaper}"];
+      };
+    };
+
+    wayland.windowManager.sway.config = {
+      colors = {
+        background = "#000000";
+        focused = {
+          border = "#ff4d00";
+          childBorder = "#ff4d00";
+          background = "#ff4d00";
+          indicator = "#ff4d00";
+          text = "#ff4d00";
+        };
+        unfocused = {
+          border = "#595959";
+          childBorder = "#595959";
+          background = "#595959";
+          indicator = "#595959";
+          text = "#595959";
+        };
+        urgent = {
+          border = "#ff0000";
+          childBorder = "#ff0000";
+          background = "#ff0000";
+          indicator = "#ff0000";
+          text = "#ff0000";
+        };
+      };
+      gaps = {
+        inner = 6;
+        outer = 3;
+        top = 2;
+      };
+      window = {
+        border = 1;
+        titlebar = false;
       };
     };
   };

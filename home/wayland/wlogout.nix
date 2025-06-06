@@ -12,6 +12,7 @@ in {
   config = lib.mkIf cfg.enable {
     programs.wlogout = {
       enable = true;
+
       layout = [
         {
           label = "shutdown";
@@ -27,13 +28,13 @@ in {
         }
         {
           label = "logout";
-          action = "hyprctl dispatch exit";
+          action = "swaymsg exit";
           text = "Exit";
           keybind = "e";
         }
         {
           label = "lock";
-          action = "hyprlock";
+          action = "swaylock";
           text = "Lock";
           keybind = "l";
         }
@@ -50,6 +51,7 @@ in {
           keybind = "h";
         }
       ];
+
       style = ''
         * {
           background-image: none;

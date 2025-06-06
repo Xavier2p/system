@@ -23,6 +23,7 @@ in {
         sudo.u2fAuth = true;
         ly.u2fAuth = lib.mkIf cfg.dmEnable true;
         hyprlock.u2fAuth = lib.mkIf cfg.waylandEnable true;
+        swaylock.u2fAuth = true;
       };
     };
   };

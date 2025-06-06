@@ -5,9 +5,7 @@
 }: let
   cfg = config.notifications;
 in {
-  options = {
-    notifications.enable = lib.mkEnableOption "Notifications Daemon";
-  };
+  options.notifications.enable = lib.mkEnableOption "Notifications Daemon";
 
   config = lib.mkIf cfg.enable {
     services.dunst = {

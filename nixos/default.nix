@@ -39,6 +39,7 @@
   };
 
   yubikey.enable = lib.mkDefault false;
+  security.polkit.enable = true;
 
   programs.nano.enable = false;
 

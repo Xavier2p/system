@@ -14,13 +14,15 @@ in {
       enable = true;
 
       settings = {
-        monitor = ",preferred,auto,1";
+        monitor = [
+          "eDP-1,1920x1200@60,2000x-1440,1"
+          "DP-3,2560x1440@60,0x0,1"
+        ];
 
         general = {
           gaps_in = 3;
           gaps_out = 6;
           border_size = 1;
-          #"col.active_border" = "rgba(33ccffee) rgba(00ff99ee) 45deg";
           "col.active_border" = "rgba(ff4d00ee)";
           "col.inactive_border" = "rgba(595959aa)";
           resize_on_border = false;
@@ -29,8 +31,8 @@ in {
         };
 
         "exec-once" = [
-          "waybar"
           "hyprpaper"
+          "waybar"
           "[workspace 1 silent] alacritty"
           "[workspace 2 silent] firefox"
         ];
@@ -47,21 +49,13 @@ in {
           kb_variant = "";
           kb_options = "caps:swapescape";
 
-          touchpad = {
-            natural_scroll = true;
-          };
+          touchpad.natural_scroll = true;
         };
 
         decoration = {
-          rounding = 16;
-
+          rounding = 0;
           active_opacity = 1.0;
           inactive_opacity = 1.0;
-
-          #drop_shadow = true;
-          #shadow_range = 4;
-          #shadow_render_power = 3;
-          #"col.shadow" = "rgba(1a1a1aee)";
 
           blur = {
             enabled = true;
@@ -73,7 +67,7 @@ in {
         };
 
         animations = {
-          enabled = true;
+          enabled = false;
 
           bezier = "myBezier, 0.05, 0.9, 0.1, 1.05";
 

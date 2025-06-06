@@ -13,7 +13,10 @@ in {
   config = lib.mkIf cfg.enable {
     programs.waybar = {
       enable = true;
-      systemd.enable = true;
+      systemd = {
+        enable = true;
+        target = "sway-session.target";
+      };
       settings = {
         mainbar = {
           layer = "top";
@@ -21,9 +24,9 @@ in {
           position = "top";
           margin-top = 0;
 
-          modules-left = ["custom/startmenu" "network"];
-          modules-center = ["hyprland/workspaces"];
-          modules-right = ["temperature" "cpu" "memory" "disk" "battery" "clock"];
+          modules-left = ["clock" "network"];
+          modules-center = ["sway/workspaces"];
+          modules-right = ["temperature" "cpu" "memory" "disk" "battery"];
 
           clock = {
             interval = 5;
@@ -42,9 +45,9 @@ in {
             interval = 5;
             format = "{usage}%  ";
             states = {
-              critical = 100;
-              warning = 90;
-              normal = 75;
+              critical = 90;
+              warning = 75;
+              normal = 50;
             };
             format-critical = "  {usage}%  ";
             format-warning = "  {usage}%  ";
@@ -96,12 +99,7 @@ in {
             format-full = "  {capacity}% {icon} ";
             format-charging = "  {capacity}% {icon} ";
           };
-          "custom/startmenu" = {
-            tooltip-format = "Start Menu";
-            format = "";
-            on-click = "sleep 0.1 && rofi -show drun -show-icons";
-          };
-          "hyprland/workspaces" = {
+          "sway/workspaces" = {
             format = "{icon}";
             format-icons = {
               "1" = " ";
@@ -115,12 +113,12 @@ in {
               "9" = " ";
               "10" = " ";
               default = "";
-              active = "·";
+              focused = "·";
               urgent = " ";
               empty = "";
             };
-            on-scroll-up = "hyprctl dispatch workspace e+1";
-            on-scroll-down = "hyprctl dispatch workspace e-1";
+            #on-scroll-up = "hyprctl dispatch workspace e+1";
+            #on-scroll-down = "hyprctl dispatch workspace e-1";
           };
         };
       };
@@ -150,7 +148,7 @@ in {
           opacity: 0.5;
           transition: ${betterTransition};
         }
-        #workspaces button.active {
+        #workspaces button.focused {
           font-weight: bold;
           background-color: rgba(255, 255, 255, 0.1);
           padding: 0px 5px;
@@ -178,13 +176,13 @@ in {
           background-color: rgba(0, 0, 0, 0.9);
         }
         #window, #pulseaudio, #cpu, #memory, #idle_inhibitor,
-        #battery, #tray, #custom-exit, #clock, #temperature, #disk {
+        #battery, #tray, #custom-exit, #temperature, #disk {
           background-color: rgba(0, 0, 0, 0.5);
           margin: 3px 4px 0px 0px;
           padding: 0px 15px;
           border-radius: 16px;
         }
-        #custom-startmenu, #network {
+        #clock, #network {
           background-color: rgba(0, 0, 0, 0.5);
           margin: 3px 0px 0px 4px;
           padding: 0px 15px;
