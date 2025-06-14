@@ -44,6 +44,6 @@
 
   forgeServices = {
     enable = true;
-    homassist.enable = true;
+    homassist = true;
   };
 }
