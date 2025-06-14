@@ -44,6 +44,7 @@ in {
         "ios"
         "mealie"
         "meteo_france"
+        "mobile_app"
         "unifi"
         "unifiprotect"
       ];
