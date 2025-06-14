@@ -12,9 +12,10 @@ in {
 
   options.forgeServices = {
     enable = lib.mkEnableOption "Enable the /forge Service Store";
+    homassist = lib.mkEnableOption "Enable Home Assistant";
   };
 
   config = lib.mkIf cfg.enable {
-    homassist.enable = lib.mkDefault false;
+    homassist.enable = cfg.homassist;
   };
 }
