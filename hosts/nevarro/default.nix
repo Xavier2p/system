@@ -7,6 +7,7 @@
     ./hardware.nix
     ./network.nix
     ../../nixos
+    ../../services
     inputs.home-manager.nixosModules.default
   ];
 
@@ -40,4 +41,9 @@
   services.netbird.enable = true;
   programs.zsh.enable = true;
   system.stateVersion = "23.05";
+
+  forgeServices = {
+    enable = true;
+    homassist.enable = true;
+  };
 }
