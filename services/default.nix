@@ -6,9 +6,7 @@
 }: let
   cfg = config.forgeServices;
 in {
-  imports = [
-    ./homassist.nix
-  ];
+  imports = [];
 
   options.forgeServices = {
     enable = lib.mkEnableOption "Enable the /forge Service Store";
@@ -16,6 +14,17 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    homassist.enable = cfg.homassist;
+    services.home-assistant = {
+      enable = cfg.homassist;
+      openFirewall = true;
+      configWritable = true;
+
+      config = {
+        homeassistant = {
+          name = "ThePlaceToLive";
+          unit_system = "metric";
+        };
+      };
+    };
   };
 }
