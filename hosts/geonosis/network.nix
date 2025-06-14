@@ -14,7 +14,7 @@
 
     # Firewall.
     firewall = {
-      allowedTCPPorts = [22];
+      allowedTCPPorts = [22 8080];
       # allowedUDPPorts = [ ... ];
     };
   };
