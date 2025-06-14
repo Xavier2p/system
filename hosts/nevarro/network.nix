@@ -17,7 +17,7 @@
       useDHCP = false;
       wakeOnLan = {
         enable = true;
-        policy = "magic";
+        policy = ["magic"];
       };
     };
 
