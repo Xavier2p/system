@@ -8,7 +8,7 @@
     };
 
     interfaces.enp2s0 = {
-      addresses = [
+      ipv4.addresses = [
         {
           address = "10.0.0.60";
           prefixLength = 24;
