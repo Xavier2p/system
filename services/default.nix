@@ -23,8 +23,30 @@ in {
         homeassistant = {
           name = "ThePlaceToLive";
           unit_system = "metric";
+          time_zone = "Europe/Paris";
+          temperature_unit = "C";
+        };
+        lovelace.mode = "yaml";
+        http = {
+          server_port = 8123;
+          server_host = [
+            "0.0.0.0"
+            "::"
+          ];
         };
       };
+
+      extraComponents = [
+        "adguard"
+        "default_config"
+        "homekit_controller"
+        "homekit"
+        "ios"
+        "mealie"
+        "meteo_france"
+        "unifi"
+        "unifiprotect"
+      ];
     };
   };
 }
