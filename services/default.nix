@@ -48,7 +48,33 @@ in {
         };
       };
 
-      defaultIntegrations = integrations;
+      defaultIntegrations =
+        lib.mkForce
+        [
+          "application_credentials"
+          "frontend"
+          "hardware"
+          "logger"
+          "network"
+          "system_health"
+          "automation"
+          "person"
+          "scene"
+          "script"
+          "tag"
+          "zone"
+          "counter"
+          "input_boolean"
+          "input_button"
+          "input_datetime"
+          "input_number"
+          "input_select"
+          "input_text"
+          "schedule"
+          "timer"
+          "backup"
+        ]
+        ++ integrations;
       extraComponents = integrations;
     };
 
