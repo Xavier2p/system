@@ -73,7 +73,7 @@ in {
       extraComponents = integrations;
     };
 
-    environment.systemPackages = with pkgs.python310Packages; [
+    environment.systemPackages = with pkgs.python313Packages; [
       pyatv
       pymetno
       gtts
