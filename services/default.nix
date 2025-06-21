@@ -5,6 +5,18 @@
   ...
 }: let
   cfg = config.forgeServices;
+  integrations = [
+    "adguard"
+    "default_config"
+    "homekit_controller"
+    "homekit"
+    "ios"
+    "mealie"
+    "meteo_france"
+    "mobile_app"
+    "unifi"
+    "unifiprotect"
+  ];
 in {
   imports = [];
 
@@ -36,18 +48,15 @@ in {
         };
       };
 
-      extraComponents = [
-        "adguard"
-        "default_config"
-        "homekit_controller"
-        "homekit"
-        "ios"
-        "mealie"
-        "meteo_france"
-        "mobile_app"
-        "unifi"
-        "unifiprotect"
-      ];
+      defaultIntegrations = integrations;
+      extraComponents = integrations;
     };
+
+    environment.systemPackages = with pkgs.python310Packages; [
+      pyatv
+      pymetno
+      gtts
+      radios
+    ];
   };
 }

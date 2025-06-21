@@ -1,4 +1,4 @@
-{
+{lib, ...}: {
   networking = {
     hostName = "nevarro";
 
@@ -26,7 +26,7 @@
     nameservers = ["10.0.0.50"];
 
     firewall = {
-      enable = false;
+      enable = lib.mkForce false;
       allowedTCPPorts = [22 80 443 2375];
     };
   };
