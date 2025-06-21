@@ -6,27 +6,27 @@
 }: let
   cfg = config.forgeServices;
   integrations = [
-    "application_credentials"
-    "frontend"
-    "hardware"
-    "logger"
-    "network"
-    "system_health"
-    "automation"
-    "person"
-    "scene"
-    "script"
-    "tag"
-    "zone"
-    "counter"
-    "input_boolean"
-    "input_button"
-    "input_datetime"
-    "input_number"
-    "input_select"
-    "input_text"
-    "schedule"
-    "timer"
+    # "application_credentials"
+    # "frontend"
+    # "hardware"
+    # "logger"
+    # "network"
+    # "system_health"
+    # "automation"
+    # "person"
+    # "scene"
+    # "script"
+    # "tag"
+    # "zone"
+    # "counter"
+    # "input_boolean"
+    # "input_button"
+    # "input_datetime"
+    # "input_number"
+    # "input_select"
+    # "input_text"
+    # "schedule"
+    # "timer"
     "backup"
     "adguard"
     "default_config"
@@ -70,7 +70,6 @@ in {
         };
       };
 
-      defaultIntegrations = lib.mkForce integrations;
       extraComponents = integrations;
     };
 
