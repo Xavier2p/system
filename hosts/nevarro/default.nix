@@ -43,7 +43,7 @@
   system.stateVersion = "23.05";
 
   forgeServices = {
-    enable = true;
-    homassist = true;
+    enable = false;
+    homassist = false;
   };
 }
