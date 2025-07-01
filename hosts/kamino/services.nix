@@ -3,7 +3,7 @@
     aerospace = {};
     skhd = {
       enable = true;
-      skhdConfig = {};
+      skhdConfig = '''';
     };
     yabai = {
       enable = false;
