@@ -19,6 +19,8 @@
         minimize-to-application = true;
         orientation = "left";
         show-recents = false;
+        tilesize = 16;
+        largesize = 64;
         wvous-tr-corner = 5;
         wvous-tl-corner = 10;
       };
