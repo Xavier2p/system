@@ -10,7 +10,6 @@
       "android-file-transfer"
       "appcleaner"
       "obsidian"
-      "vlc"
     ];
   };
 }

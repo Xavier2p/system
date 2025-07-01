@@ -1,14 +1,14 @@
 {...}: {
-  services = {
-    aerospace = {};
-    skhd = {
-      enable = true;
-      skhdConfig = '''';
-    };
-    yabai = {
-      enable = false;
-      config = {};
-      extraConfig = [];
-    };
-  };
+  # services = {
+  #   aerospace = {};
+  #   skhd = {
+  #     enable = true;
+  #     skhdConfig = '''';
+  #   };
+  #   yabai = {
+  #     enable = false;
+  #     config = {};
+  #     extraConfig = [];
+  #   };
+  # };
 }
