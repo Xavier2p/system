@@ -11,6 +11,8 @@ in {
 
   nixpkgs.config.allowUnfree = true;
 
+  nix.settings."extra-experimental-features" = ["nix-command" "flakes"];
+
   users.users."${user}" = {
     home = "/Users/${user}";
   };
