@@ -53,12 +53,12 @@
         ];
       };
     };
-    darwinConfigurations.exegol = darwin.lib.darwinSystem {
+    darwinConfigurations.kamino = darwin.lib.darwinSystem {
       specialArgs = {inherit inputs;};
       system = "aarch64-darwin";
-      pkgs = import nixpkgs { system = "aarch64-darwin"; };
+      pkgs = import nixpkgs {system = "aarch64-darwin";};
       modules = [
-        ./hosts/exegol
+        ./hosts/kamino
         inputs.home-manager.darwinModules.home-manager
       ];
     };
