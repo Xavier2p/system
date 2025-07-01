@@ -9,9 +9,7 @@
     casks = [
       "android-file-transfer"
       "appcleaner"
-      "arc"
       "obsidian"
-      "raycast"
       "vlc"
     ];
   };

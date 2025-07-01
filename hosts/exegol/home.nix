@@ -2,8 +2,8 @@
   imports = [./../../home];
 
   home = {
-    username = "xavier2p";
-    homeDirectory = "/Users/xavier2p";
+    username = "blaxxmith";
+    homeDirectory = "/Users/blaxxmith";
   };
 
   gui.enable = false;
@@ -11,5 +11,5 @@
   nvim.enable = true;
   shelltools.enable = true;
   iamb.enable = false;
-  dev.enable = false;
+  # dev.enable = false;
 }

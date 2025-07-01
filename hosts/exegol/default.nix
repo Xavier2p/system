@@ -1,22 +1,25 @@
 # Apple related things, for macOS
-{inputs, ...}: {
+{inputs, ...}: let
+  user = "blaxxmith";
+in {
   imports = [
     inputs.home-manager.darwinModules.home-manager
     ./homebrew.nix
+    ./services.nix
     ./settings.nix
   ];
 
   nixpkgs.config.allowUnfree = true;
 
-  users.users.xavier2p = {
-    home = "/Users/xavier2p";
+  users.users."${user}" = {
+    home = "/Users/${user}";
   };
 
   home-manager = {
     # useGlobalPkgs = true;
     extraSpecialArgs = {inherit inputs;};
     useUserPackages = true;
-    users.xavier2p = import ./home.nix;
+    users."${user}" = import ./home.nix;
   };
 
   system.stateVersion = 6;
