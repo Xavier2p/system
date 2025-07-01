@@ -4,8 +4,8 @@
 in {
   imports = [
     inputs.home-manager.darwinModules.home-manager
-    ./homebrew.nix
-    ./services.nix
+    # ./homebrew.nix
+    # ./services.nix
     ./settings.nix
   ];
 

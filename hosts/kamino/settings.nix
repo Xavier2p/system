@@ -19,8 +19,8 @@
         minimize-to-application = true;
         orientation = "left";
         show-recents = false;
-        tilesize = 16;
-        largesize = 64;
+        tilesize = 48;
+        largesize = 96;
         wvous-tr-corner = 5;
         wvous-tl-corner = 10;
       };
@@ -37,7 +37,7 @@
 
       loginwindow = {
         GuestEnabled = false;
-        LoginwindowText = "Exegol";
+        LoginwindowText = "kamino.forge";
       };
     };
 
