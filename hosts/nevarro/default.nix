@@ -41,9 +41,4 @@
   services.netbird.enable = true;
   programs.zsh.enable = true;
   system.stateVersion = "23.05";
-
-  forgeServices = {
-    enable = false;
-    homassist = false;
-  };
 }
