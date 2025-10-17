@@ -1,14 +1,9 @@
 {
   lib,
   config,
-  pkgs,
   ...
-}:
-# this file must be splitted in one file per program
-{
-  options = {
-    shelltools.enable = lib.mkEnableOption "Shell Tools Module";
-  };
+}: {
+  options.shelltools.enable = lib.mkEnableOption "Shell Tools Module";
 
   config = lib.mkIf config.shelltools.enable {
     programs = {
@@ -25,14 +20,6 @@
         nix-direnv.enable = true;
         silent = true;
         enableZshIntegration = true;
-      };
-
-      gh = {
-        enable = false; # true;
-        extensions = with pkgs; [gh-copilot];
-        settings = {
-          git_protocol = "ssh";
-        };
       };
 
       btop.enable = true;
@@ -68,12 +55,5 @@
         enableZshIntegration = true;
       };
     };
-
-    home.packages = with pkgs; [
-      wget
-      dua
-      dust
-      presenterm
-    ];
   };
 }

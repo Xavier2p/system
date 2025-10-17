@@ -5,24 +5,33 @@
   ...
 }: let
   cfg = config.zellij;
-  za = pkgs.writeShellScriptBin "za" ''
-    sessions=$(zellij ls | sed "s/\x1B\[[0-9;]*[mGK]//g" | awk '{print $1}')
-    selected_session=$(echo "$sessions" | sk --reverse --height 1 --tac)
-    if [ -n "$selected_session" ]; then
-      zellij attach "$selected_session"
-    fi
-  '';
 in {
-  options = {
-    zellij.enable = lib.mkEnableOption "Zellij terminal multiplexer";
-  };
+  options.zellij.enable = lib.mkEnableOption "Zellij terminal multiplexer";
 
   config = lib.mkIf cfg.enable {
     programs.zsh.shellAliases = {
       z = "zellij";
       zc = "zellij attach --create";
     };
-    home.packages = [za];
+    home.packages = [
+      (pkgs.writeShellScriptBin "za" ''
+        sessions=$(${pkgs.zellij}/bin/zellij ls | sed "s/\x1B\[[0-9;]*[mGK]//g" | awk '{print $1}')
+        selected_session=$(echo "$sessions" | ${pkgs.skim}/bin/sk --reverse --height 1 --tac)
+        if [ -n "$selected_session" ]; then
+          if [ -n "$ZELLIJ_SESSION_NAME" ]; then
+            ${pkgs.zellij}/bin/zellij delete-session "$ZELLIJ_SESSION_NAME" --force
+          fi
+          ${pkgs.zellij}/bin/zellij attach "$selected_session"
+        fi
+      '')
+      (pkgs.writeShellScriptBin "zd" ''
+        sessions=$(${pkgs.zellij}/bin/zellij ls | sed "s/\x1B\[[0-9;]*[mGK]//g" | awk '{print $1}')
+        selected_session=$(echo "$sessions" | ${pkgs.skim}/bin/sk --reverse --height 1 --tac)
+        if [ -n "$selected_session" ]; then
+          ${pkgs.zellij}/bin/zellij delete-session "$selected_session" --force
+        fi
+      '')
+    ];
 
     programs.zellij = {
       enable = true;

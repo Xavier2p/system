@@ -5,11 +5,12 @@
 }: let
   cfg = config.iamb;
 in {
-  options = {
-    iamb.enable = lib.mkEnableOption "IAMB Matrix Client";
-  };
+  options.iamb.enable = lib.mkEnableOption "IAMB Matrix Client";
 
   config = lib.mkIf cfg.enable {
+    programs.spotify-player = {
+      enable = true;
+    };
     programs.iamb = {
       enable = true;
       settings = {
@@ -20,7 +21,19 @@ in {
             url = "https://chat.p.ki";
           };
         };
+        layout = {
+          style = "restore";
+        };
         settings = {
+          message_shortcode_display = true;
+          reaction_shortcode_display = true;
+          image_preview.protocol = {
+            type = "halfblocks";
+            size = {
+              height = 10;
+              width = 66;
+            };
+          };
           notifications = {
             enabled = true;
             via = "bell";
@@ -28,6 +41,7 @@ in {
           users = {
             "@myn:p.ki".color = "yellow";
             "@x:p.ki".color = "green";
+            "@avalanche:p.ki".color = "red";
           };
         };
       };
