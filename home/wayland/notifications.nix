@@ -30,7 +30,7 @@ in {
           max_icon_size = 32;
           icon_corner_radius = 4;
           corner_radius = 4;
-          # background = "#282a36";
+          background = "#232323";
           # frame_color = "#44475a";
           # highlight = mkForce base03;
         };

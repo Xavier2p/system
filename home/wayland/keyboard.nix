@@ -1,8 +1,4 @@
-{
-  lib,
-  pkgs,
-  ...
-}: let
+{pkgs, ...}: let
   modifier = "Mod4";
 in {
   wayland.windowManager.sway.config = {
@@ -21,16 +17,17 @@ in {
     keybindings = {
       # General
       "${modifier}+Return" = "exec ${pkgs.alacritty}/bin/alacritty";
-      "${modifier}+Shift+e" = "exec ${pkgs.wlogout}/bin/wlogout";
       "${modifier}+Shift+r" = "reload";
       "${modifier}+Shift+q" = "kill";
       "${modifier}+Escape" = "exec ${pkgs.swaylock}/bin/swaylock";
+      "${modifier}+f" = "fullscreen toggle global";
       "Mod1+space" = "exec ${pkgs.rofi}/bin/rofi -show drun -show-icons";
       "XF86MonBrightnessDown" = "exec brightnessctl set 10%-";
       "XF86MonBrightnessUp" = "exec brightnessctl set 10%+";
       "Shift+XF86MonBrightnessDown" = "exec brightnessctl -d 'tpacpi::kbd_backlight' set 0";
       "Shift+XF86MonBrightnessUp" = "exec brightnessctl -d 'tpacpi::kbd_backlight' set 2";
       "${modifier}+r" = "mode resize";
+      "${modifier}+Shift+e" = "mode menu";
       # Focus next window
       "${modifier}+l" = "focus right";
       "${modifier}+h" = "focus left";
@@ -71,6 +68,19 @@ in {
       "${modifier}+Shift+8" = "move container to workspace number 8";
       "${modifier}+Shift+9" = "move container to workspace number 9";
       "${modifier}+Shift+0" = "move container to workspace number 10";
+    };
+
+    modes = {
+      menu = {
+        "Escape" = "mode default";
+        "Return" = "mode default";
+
+        "e" = "exit";
+        "l" = "exec ${pkgs.swaylock}/bin/swaylock";
+        "r" = "exec ${pkgs.systemd}/bin/systemctl reboot";
+        "s" = "exec ${pkgs.systemd}/bin/systemctl poweroff";
+        "h" = "exec ${pkgs.systemd}/bin/systemctl hibernate";
+      };
     };
   };
 }

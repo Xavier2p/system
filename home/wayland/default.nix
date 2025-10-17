@@ -7,22 +7,25 @@
   cfg = config.wayland;
 in {
   imports = [
-    ./lock.nix
     ./bars.nix
     ./theme.nix
     ./notifications.nix
     ./keyboard.nix
   ];
 
-  options = {
-    wayland.enable = lib.mkEnableOption "Wayland Compositor";
+  options.wayland = {
+    enable = lib.mkEnableOption "Wayland Compositor";
+    enableLock = lib.mkOption {
+      type = lib.types.bool;
+      default = cfg.enable;
+      description = "Enable lock screen functionality";
+    };
   };
 
   config = lib.mkIf cfg.enable {
-    lock.enable = lib.mkDefault true;
-    notifications.enable = lib.mkDefault true;
-    theme.enable = lib.mkDefault true;
-    bars.enable = lib.mkDefault true;
+    bars.enable = lib.mkDefault cfg.enable;
+    notifications.enable = lib.mkDefault cfg.enable;
+    theme.enable = lib.mkDefault cfg.enable;
 
     wayland.windowManager.sway = {
       enable = true;
@@ -39,9 +42,16 @@ in {
       };
     };
 
+    programs.swaylock = {
+      enable = cfg.enableLock;
+      settings.image = "/home/eagle/Documents/assets/wallpaper.jpg";
+    };
+
     home.packages = with pkgs; [
       rofi
       brightnessctl
+      wl-clipboard-rs
+      wdisplays
     ];
   };
 }

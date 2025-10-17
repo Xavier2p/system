@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }: let
   cfg = config.bars;
@@ -11,14 +12,10 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    wayland.windowManager.sway.config.bars = [];
+    wayland.windowManager.sway.config.bars = [{command = "${pkgs.waybar}/bin/waybar";}];
 
     programs.waybar = {
       enable = true;
-      systemd = {
-        enable = true;
-        target = "sway-session.target";
-      };
       settings = {
         mainbar = {
           layer = "top";
