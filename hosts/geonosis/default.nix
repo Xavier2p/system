@@ -1,20 +1,28 @@
 {
+  lib,
   pkgs,
   inputs,
   ...
-}: {
+}: let
+  user = "eagle";
+in {
   imports = [
     ./hardware.nix
     ./network.nix
     inputs.home-manager.nixosModules.default
+    inputs.lanzaboote.nixosModules.lanzaboote
     ../../nixos
     ../../profiles/laptop.nix
   ];
 
   # Bootloader.
   boot = {
-    loader.systemd-boot.enable = true;
-    loader.efi.canTouchEfiVariables = true;
+    loader.systemd-boot.enable = lib.mkForce false;
+    bootspec.enable = true;
+    lanzaboote = {
+      enable = true;
+      pkiBundle = "/var/lib/sbctl";
+    };
     plymouth = {
       enable = true;
       theme = "cuts";
@@ -35,6 +43,8 @@
   security.pki.certificateFiles = [
     /home/eagle/.nixnotsync/certs/telex.crt
     /home/eagle/.nixnotsync/certs/multi.crt
+    /home/eagle/.nixnotsync/certs/tavel.crt
+    /home/eagle/.nixnotsync/certs/alpes.si.crt
   ];
 
   virtualisation.libvirtd.enable = true;
@@ -43,7 +53,7 @@
   programs.virt-manager.enable = true;
 
   # to move to the users file
-  users.users.eagle = {
+  users.users."${user}" = {
     isNormalUser = true;
     shell = pkgs.zsh;
     description = "System Administrator";
@@ -53,14 +63,11 @@
   # Variabilize the user name and add to template host file
   home-manager = {
     extraSpecialArgs = {inherit inputs;};
-    users = {
-      "eagle" = import ./home.nix;
-    };
+    users."${user}" = import ./home.nix;
   };
 
   yubikey = {
     enable = true;
-    dmEnable = true;
     waylandEnable = true;
   };
 

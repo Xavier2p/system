@@ -10,6 +10,5 @@
   gui.enable = true;
   wayland.enable = true;
   nvim.enable = true;
-  dev.enable = true;
   iamb.enable = true;
 }
