@@ -13,14 +13,12 @@
       };
       ts_ls.enable = true;
       terraformls.enable = true;
-      ansiblels.enable = true;
       metals.enable = true;
-      gitlab_ci_ls = {
-        enable = true;
-        package = pkgs.gitlab-ci-ls;
-      };
     };
   };
 
-  home.packages = with pkgs; [ansible-language-server gitlab-ci-ls];
+  home.packages = with pkgs; [
+    nixd
+    alejandra
+  ];
 }

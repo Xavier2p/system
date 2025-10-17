@@ -8,7 +8,7 @@
   cfg = config.nvim;
 in {
   imports = [
-    inputs.nixvim.homeManagerModules.nixvim
+    inputs.nixvim.homeModules.nixvim
     ./keymapping.nix
     ./lightline.nix
     ./lsp.nix
@@ -21,11 +21,12 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
+    nixpkgs.config.allowUnfreePredicate = pkg:
+      builtins.elem (lib.getName pkg) [
+        "vimPlugins.copilot-vim"
+      ];
     programs.nixvim = {
       enable = true;
-      extraPackages = with pkgs; [
-        alejandra
-      ];
 
       defaultEditor = true;
       enableMan = true;
@@ -55,10 +56,12 @@ in {
         };
         neo-tree = {
           enable = true;
-          closeIfLastWindow = true;
-          window = {
-            width = 30;
-            autoExpandWidth = false;
+          settings = {
+            close_if_last_window = true;
+            window = {
+              width = 30;
+              auto_expand_width = false;
+            };
           };
         };
         treesitter = {
@@ -75,7 +78,10 @@ in {
         web-devicons.enable = true;
         rainbow-delimiters.enable = true;
         fugitive.enable = true;
-        # copilot-vim.enable = true;
+        copilot-vim = {
+          enable = true;
+          package = pkgs.vimPlugins.copilot-vim;
+        };
         conform-nvim = {
           enable = true;
           settings = {
