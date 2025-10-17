@@ -70,17 +70,16 @@ in {
       "${modifier}+Shift+0" = "move container to workspace number 10";
     };
 
-    modes = {
-      menu = {
-        "Escape" = "mode default";
-        "Return" = "mode default";
+    modes.menu = {
+      "Escape" = "mode default";
+      "Return" = "mode default";
+      "${modifier}+Shift+e" = "mode default";
 
-        "e" = "exit";
-        "l" = "exec ${pkgs.swaylock}/bin/swaylock";
-        "r" = "exec ${pkgs.systemd}/bin/systemctl reboot";
-        "s" = "exec ${pkgs.systemd}/bin/systemctl poweroff";
-        "h" = "exec ${pkgs.systemd}/bin/systemctl hibernate";
-      };
+      "e" = "exit";
+      "l" = "exec ${pkgs.swaylock}/bin/swaylock";
+      "r" = "exec ${pkgs.systemd}/bin/systemctl reboot";
+      "s" = "exec ${pkgs.systemd}/bin/systemctl poweroff";
+      "h" = "exec ${pkgs.systemd}/bin/systemctl hibernate";
     };
   };
 }
