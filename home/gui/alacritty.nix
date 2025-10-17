@@ -5,9 +5,7 @@
 }: let
   cfg = config.alacritty;
 in {
-  options = {
-    alacritty.enable = lib.mkEnableOption "Alacritty Terminal";
-  };
+  options.alacritty.enable = lib.mkEnableOption "Alacritty Terminal";
 
   config = lib.mkIf cfg.enable {
     programs.alacritty = {

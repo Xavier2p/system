@@ -6,9 +6,7 @@
 }: let
   cfg = config.chromium;
 in {
-  options = {
-    chromium.enable = lib.mkEnableOption "Enable Chromium Browser";
-  };
+  options.chromium.enable = lib.mkEnableOption "Enable Chromium Browser";
 
   config = lib.mkIf cfg.enable {
     programs.chromium = {
@@ -17,6 +15,7 @@ in {
       extensions = [
         "cjpalhdlnbpafiamejdnhcphjbkeiagm" # uBlock Origin
         "gcknhkkoolaabfmlnjonogaaifnjlfnp" # FoxyProxy
+        "ddkjiahejlhfcafbddmgiahcphecmpfh" # uBlock Origin Lite
       ];
     };
   };
