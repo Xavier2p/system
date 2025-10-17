@@ -1,16 +1,10 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}: {
+{lib, ...}: {
   imports = [
     ./docker.nix
     ./networking.nix
     ./nix.nix
     ./wm.nix
     ./yubikey.nix
-    ./services.nix
   ];
 
   # Set your time zone.
@@ -45,7 +39,9 @@
 
   documentation = {
     enable = true;
-    # enable man, doc for packages and for home
+    man.enable = true;
+    doc.enable = true;
+    info.enable = true;
   };
 
   wm.enable = lib.mkDefault false;
@@ -57,6 +53,14 @@
       /  / |   __|  |  |  |  | |      /   |  | |_ | |   __|  |  |  |  |     \\   \\
      /  /  |  |     |  `--'  | |  |\\  \\--.|  |__| | |  |____ |  `--'  | .----)   |
     /__/   |__|      \\______/  | _| `.___| \\______| |_______| \\______/  |_______/
+
+    [32m<<< Welcome to \n (\l) >>>[0m
+
+    <<< Current Version: \s \r >>>
+    <<< Main IP: \4 >>>
+    <<< Logged users: \U >>>
+
+    [1;31m<<< Unauthorized access is prohibited and will be reported >>>[0m
 
   '';
 }
