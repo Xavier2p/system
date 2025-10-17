@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }: let
   cfg = config.zsh;
@@ -20,13 +21,13 @@ in {
 
       initContent = ''
         cd() {
-        builtin cd "$@" && eza
+        builtin cd "$@" && ${pkgs.eza}/bin/eza --icons=always --color=always --sort=type
         }
         if command -v kubectl >/dev/null 2>&1; then
-          source <(kubectl completion zsh)
+          source <(${pkgs.kubectl}/bin/kubectl completion zsh)
         fi
         if command -v helm >/dev/null 2>&1; then
-          source <(helm completion zsh)
+          source <(${pkgs.helm}/bin/helm completion zsh)
         fi
       '';
 
@@ -37,7 +38,7 @@ in {
         ignoreAllDups = true;
         ignoreDups = true;
         ignoreSpace = true;
-        save = 1000;
+        save = 10000;
         saveNoDups = true;
         share = false;
       };
