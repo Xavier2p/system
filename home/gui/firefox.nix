@@ -19,20 +19,10 @@ in {
         isDefault = true;
         name = "Default";
 
-        bookmarks.settings = [
-          {
-            name = "NixPkgs";
-            url = "https://search.nixos.org";
-          }
-        ];
+        bookmarks = {};
 
+        containersForce = true;
         containers = {
-          personal = {
-            name = "Personal";
-            color = "orange";
-            icon = "fingerprint";
-            id = 0;
-          };
           work = {
             name = "Work";
             color = "yellow";
@@ -51,20 +41,27 @@ in {
             icon = "tree";
             id = 3;
           };
+          personal = {
+            name = "Personal";
+            color = "red";
+            icon = "fingerprint";
+            id = 4;
+          };
         };
 
-        extensions = {
-          packages = with inputs.firefox-addons; [
-            ublock-origin
-            proton-vpn
-            proton-pass
-            privacy-badger
-            foxyproxy
-          ];
-        };
+        # extensions = {
+        #   packages = with pkgs.nur.repos.rycee.firefox-addons; [
+        #     ublock-origin
+        #     proton-vpn
+        #     proton-pass
+        #     privacy-badger
+        #     foxyproxy
+        #   ];
+        # };
 
         settings = {
           "browser.startup.homepage" = "about:home";
+          "browser.startup.page" = "3";
 
           # Disable irritating first-run stuff
           "browser.disableResetPrompt" = true;
@@ -80,28 +77,44 @@ in {
           "trailhead.firstrun.didSeeAboutWelcome" = true;
           "browser.bookmarks.restore_default_bookmarks" = false;
           "browser.bookmarks.addedImportButton" = true;
-
-          # Don't ask for download dir
+          "browser.tabs.groups.smart.userEnabled" = false;
+          "browser.urlbar.suggest.trending" = false;
+          "extensions.formautofill.addresses.enabled" = false;
+          "extensions.formautofill.creditCards.enabled" = false;
           "browser.download.useDownloadDir" = false;
 
-          # Disable crappy home activity stream page
-          "browser.newtabpage.activity-stream.feeds.topsites" = false;
+          "browser.newtabpage.activity-stream.feeds.topsites" = true;
+          "browser.newtabpage.activity-stream.feeds.topsitesRows" = 2;
           "browser.newtabpage.activity-stream.showSponsoredTopSites" = false;
+          "browser.newtabpage.activity-stream.showSponsoredCheckboxes" = false;
           "browser.newtabpage.activity-stream.improvesearch.topSiteSearchShortcuts" = false;
+          "browser.newtabpage.activity-stream.asrouter.userprefs.cfr.addons" = false;
+          "browser.newtabpage.activity-stream.asrouter.userprefs.cfr.features" = false;
           "browser.newtabpage.blocked" = lib.genAttrs [
-            # Youtube
             "26UbzFJ7qT9/4DhodHKA1Q=="
-            # Facebook
             "4gPpjkxgZzXPVtuEoAL9Ig=="
-            # Wikipedia
             "eV8/WsSLxHadrTL1gAxhug=="
-            # Reddit
             "gLv0ja2RYVgxKdp0I5qwvA=="
-            # Amazon
             "K00ILysCaEq8+bEqV/3nuw=="
-            # Twitter
             "T9nJot5PurhJSy8n038xGA=="
           ] (_: 1);
+          "browser.newtabpage.pinned" = builtins.toJSON [
+            {
+              url = "https://github.com";
+              baseDomain = "github.com";
+              label = "GitHub";
+            }
+            {
+              url = "https://search.nixos.org";
+              baseDomain = "search.nixos.org";
+              label = "NixPkgs";
+            }
+            {
+              url = "https://nix-community.github.io/home-manager/options.xhtml";
+              label = "HM Index";
+              baseDomain = "nix-community.github.io";
+            }
+          ];
 
           # Disable some telemetry
           "app.shield.optoutstudies.enabled" = false;
@@ -129,31 +142,25 @@ in {
           "toolkit.telemetry.unifiedIsOptIn" = false;
           "toolkit.telemetry.updatePing.enabled" = false;
 
-          # Disable fx accounts
           "identity.fxaccounts.enabled" = false;
-          # Disable "save password" prompt
           "signon.rememberSignons" = false;
-          # Harden
           "privacy.trackingprotection.enabled" = true;
           "dom.security.https_only_mode" = true;
-          # Remove close button
           "browser.tabs.inTitlebar" = 0;
-          # Vertical tabs
+          "browser.toolbars.bookmarks.visibility" = "never";
           "sidebar.verticalTabs" = false;
           "sidebar.revamp" = false;
-          "sidebar.main.tools" = ["history" "bookmarks"];
-          # Layout
           "browser.uiCustomization.state" = builtins.toJSON {
             placements = {
               unified-extensions-area = [];
-              widget-overflow-fixed-list = [];
-              nav-bar = ["back-button" "forward-button" "vertical-spacer" "stop-reload-button" "urlbar-container" "downloads-button" "ublock0_raymondhill_net-browser-action" "_testpilot-containers-browser-action" "reset-pbm-toolbar-button" "unified-extensions-button"];
+              widget-overflow-fixed-list = ["edit-controls" "zoom-controls" "developer-button" "preferences-button"];
+              nav-bar = ["back-button" "forward-button" "stop-reload-button" "vertical-spacer" "urlbar-container" "downloads-button" "78272b6fa58f4a1abaac99321d503a20_proton_me-browser-action" "vpn_proton_ch-browser-action" "unified-extensions-button"];
               toolbar-menubar = ["menubar-items"];
-              TabsToolbar = [];
-              vertical-tabs = ["tabbrowser-tabs"];
+              TabsToolbar = ["screenshot-button" "tabbrowser-tabs"];
+              vertical-tabs = [];
               PersonalToolbar = ["personal-bookmarks"];
             };
-            seen = ["save-to-pocket-button" "developer-button" "ublock0_raymondhill_net-browser-action" "_testpilot-containers-browser-action" "screenshot-button"];
+            # seen = ["save-to-pocket-button" "developer-button" "ublock0_raymondhill_net-browser-action" "_testpilot-containers-browser-action" "screenshot-button"];
             dirtyAreaCache = ["nav-bar" "PersonalToolbar" "toolbar-menubar" "TabsToolbar" "widget-overflow-fixed-list" "vertical-tabs"];
             currentVersion = 23;
             newElementCount = 10;
