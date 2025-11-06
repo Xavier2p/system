@@ -22,10 +22,13 @@ in {
       "${modifier}+Escape" = "exec ${pkgs.swaylock}/bin/swaylock";
       "${modifier}+f" = "fullscreen toggle global";
       "Mod1+space" = "exec ${pkgs.rofi}/bin/rofi -show drun -show-icons";
-      "XF86MonBrightnessDown" = "exec brightnessctl set 10%-";
-      "XF86MonBrightnessUp" = "exec brightnessctl set 10%+";
-      "Shift+XF86MonBrightnessDown" = "exec brightnessctl -d 'tpacpi::kbd_backlight' set 0";
-      "Shift+XF86MonBrightnessUp" = "exec brightnessctl -d 'tpacpi::kbd_backlight' set 2";
+      "XF86MonBrightnessDown" = "exec ${pkgs.brightnessctl}/bin/brightnessctl set 10%-";
+      "XF86MonBrightnessUp" = "exec ${pkgs.brightnessctl}/bin/brightnessctl set 10%+";
+      "Shift+XF86MonBrightnessDown" = "exec ${pkgs.brightnessctl}/bin/brightnessctl -d 'tpacpi::kbd_backlight' set 0";
+      "Shift+XF86MonBrightnessUp" = "exec ${pkgs.brightnessctl}/bin/brightnessctl -d 'tpacpi::kbd_backlight' set 2";
+      "XF86AudioRaiseVolume" = "exec ${pkgs.pamixer}/bin/pamixer --increase 5";
+      "XF86AudioLowerVolume" = "exec ${pkgs.pamixer}/bin/pamixer --decrease 5";
+      "XF86AudioMute" = "exec ${pkgs.pamixer}/bin/pamixer --toggle-mute";
       "${modifier}+r" = "mode resize";
       "${modifier}+Shift+e" = "mode menu";
       # Focus next window
