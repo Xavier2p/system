@@ -28,6 +28,7 @@ in {
       dua
       dust
       presenterm
+      exegol
     ];
   };
 }

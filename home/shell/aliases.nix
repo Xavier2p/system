@@ -16,16 +16,15 @@ in {
       ls = "${ls}";
       la = "${ls} --almost-all";
       l = "${ls} --long --almost-all --octal-permissions --header";
-      ll = "${ls} --long --header";
+      ll = "${ls} --long --header --octal-permissions";
       tree = "${ls} --tree";
 
       g = "git";
 
       mk = "${editor} Makefile";
-      rca = "${editor} ~/.system/home/shell/aliases.nix";
 
       dk = "docker";
-      dkc = "docker-compose";
+      dkc = "docker compose";
       k = "kubectl";
       kn = "kubectl config set-context minikube --namespace";
       tf = "terraform";

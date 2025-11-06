@@ -71,9 +71,6 @@ in {
     waylandEnable = true;
   };
 
-  # Static config for Firefox in its own file
-  programs.firefox.enable = true;
-
   # move this line to the home-manager config
   fonts.packages = [pkgs.nerd-fonts.hack];
 
