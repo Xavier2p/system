@@ -7,15 +7,13 @@
   cfg = config.gui;
 in {
   imports = [
-    ./alacritty.nix
     ./chromium.nix
     ./firefox.nix
+    ./terminal.nix
     ./vscode.nix
   ];
 
-  options = {
-    gui.enable = lib.mkEnableOption "Desktop GUI Apps";
-  };
+  options.gui.enable = lib.mkEnableOption "Desktop GUI Apps";
 
   config = lib.mkIf cfg.enable {
     alacritty.enable = lib.mkDefault true;
@@ -27,6 +25,7 @@ in {
       signal-desktop
       obsidian
       feh
+      jetbrains.pycharm
     ];
   };
 }
