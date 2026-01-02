@@ -24,8 +24,8 @@ in {
           margin-top = 0;
 
           modules-left = ["clock" "network" "sway/mode"];
-          modules-center = ["sway/workspaces"];
-          modules-right = ["temperature" "cpu" "memory" "disk" "battery"];
+          modules-center = ["sway/workspaces" "privacy"];
+          modules-right = ["temperature" "cpu" "memory" "disk" "pulseaudio" "battery"];
 
           clock = {
             interval = 5;
@@ -117,8 +117,17 @@ in {
               empty = "";
             };
           };
-          "sway/mode" = {
-            format = "mode::{}";
+          "sway/mode".format = "mode::{}";
+          pulseaudio = {
+            format = "{volume}% {icon}";
+            format-muted = "muted";
+            format-icons = {
+              "alsa_output.pci-0000_00_1f.3-platform-skl_hda_dsp_generic.HiFi__Speaker__sink" = " ";
+              "alsa_output.pci-0000_00_1f.3-platform-skl_hda_dsp_generic.HiFi__Headphones__sink" = " ";
+            };
+          };
+          privacy = {
+            modules = [{type = "screenshare";} {type = "audio-in";} {type = "audio-out";}];
           };
         };
       };
@@ -176,25 +185,25 @@ in {
           background-color: rgba(0, 0, 0, 0.9);
         }
         #window, #pulseaudio, #cpu, #memory, #idle_inhibitor,
-        #battery, #tray, #custom-exit, #temperature, #disk {
+        #battery, #tray, #custom-exit, #temperature, #disk, #pulseaudio {
           background-color: rgba(0, 0, 0, 0.5);
           margin: 3px 4px 0px 0px;
           padding: 0px 15px;
           border-radius: 16px;
         }
-        #clock, #network, #mode {
+        #clock, #network, #mode, #privacy {
           background-color: rgba(0, 0, 0, 0.5);
           margin: 3px 0px 0px 4px;
           padding: 0px 15px;
           border-radius: 16px;
         }
-        #battery.full, #battery.charging {
+        #battery.full, #battery.charging, #pulseaudio.muted, #privacy-item.audio-out {
           color: rgba(0, 255, 0, 0.5);
         }
-        #battery.warning, #cpu.warning, #memory.warning {
+        #battery.warning, #cpu.warning, #memory.warning, #privacy-item.audio-in {
           color: rgba(255, 255, 0, 0.5);
         }
-        #battery.critical, #cpu.critical, #memory.critical, #temperature.critical {
+        #battery.critical, #cpu.critical, #memory.critical, #temperature.critical, #privacy-item.screenshare {
           color: rgba(255, 0, 0, 0.5);
         }
       '';

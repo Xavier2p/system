@@ -37,6 +37,16 @@ in {
         output = {
           "eDP-1" = {
             mode = "1920x1200@60.002Hz";
+            position = "1440,1778";
+          };
+          "DP-4" = {
+            mode = "2560x1440@59.951Hz";
+            position = "0,0";
+            transform = "270";
+          };
+          "DP-3" = {
+            mode = "2560x1440@59.951Hz";
+            position = "1440,338";
           };
         };
       };
