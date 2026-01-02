@@ -12,7 +12,7 @@ in {
   ];
 
   options.forgeOS.shell = {
-    enable = lib.mkEnableOption "Enable custom shell configuration";
+    enable = lib.mkEnableOption "ZSH as main shell";
   };
 
   config = lib.mkIf cfg.enable {

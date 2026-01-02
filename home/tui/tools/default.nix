@@ -18,9 +18,9 @@ in {
   ];
 
   options.forgeOS.tools = {
-    enable = lib.mkEnableOption "Tools and Utilities module.";
-    enableEssentialTools = lib.mkEnableOption "essential set of tools and utilities.";
-    enableExtendedTools = lib.mkEnableOption "extended set of tools and utilities.";
+    enable = lib.mkEnableOption "Tools and Utilities module";
+    enableEssentialTools = lib.mkEnableOption "essential set of tools and utilities";
+    enableExtendedTools = lib.mkEnableOption "extended set of tools and utilities";
 
     oxydize = lib.mkOption {
       type = lib.types.bool;
