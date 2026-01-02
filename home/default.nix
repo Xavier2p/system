@@ -1,15 +1,15 @@
 {lib, ...}: {
   imports = [
-    ./gui
-    ./shell
+    ./apps
     ./tui
-    ./wayland
+    ./desktop
   ];
 
-  gui.enable = lib.mkDefault false;
-  shell.enable = lib.mkDefault true;
+  forgeOS.apps.enable = lib.mkDefault true;
+  forgeOS.apps.enableTUIApps = lib.mkDefault true;
+  forgeOS.apps.enableGUIApps = lib.mkDefault true;
   tui.enable = lib.mkDefault true;
-  wayland.enable = lib.mkDefault false;
+  forgeOS.desktop.enable = lib.mkDefault false;
 
   nixpkgs.config.allowUnfree = true;
   programs.home-manager.enable = true;

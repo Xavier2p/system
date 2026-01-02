@@ -3,9 +3,9 @@
   lib,
   ...
 }: let
-  cfg = config.notifications;
+  cfg = config.forgeOS.desktop.notifications;
 in {
-  options.notifications.enable = lib.mkEnableOption "Notifications Daemon";
+  options.forgeOS.desktop.notifications.enable = lib.mkEnableOption "Notifications Daemon";
 
   config = lib.mkIf cfg.enable {
     services.dunst = {

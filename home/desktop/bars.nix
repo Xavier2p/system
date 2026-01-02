@@ -4,12 +4,10 @@
   pkgs,
   ...
 }: let
-  cfg = config.bars;
+  cfg = config.forgeOS.desktop.bars;
   betterTransition = "all 0.3s cubic-bezier(.55,-0.68,.48,1.682)";
 in {
-  options = {
-    bars.enable = lib.mkEnableOption "Sway Bars";
-  };
+  options.forgeOS.desktop.bars.enable = lib.mkEnableOption "Sway Bars";
 
   config = lib.mkIf cfg.enable {
     wayland.windowManager.sway.config.bars = [{command = "${pkgs.waybar}/bin/waybar";}];

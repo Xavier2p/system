@@ -4,7 +4,7 @@
   pkgs,
   ...
 }: let
-  cfg = config.wayland;
+  cfg = config.forgeOS.desktop;
 in {
   imports = [
     ./bars.nix
@@ -13,7 +13,7 @@ in {
     ./keyboard.nix
   ];
 
-  options.wayland = {
+  options.forgeOS.desktop = {
     enable = lib.mkEnableOption "Wayland Compositor";
     enableLock = lib.mkOption {
       type = lib.types.bool;
@@ -23,9 +23,11 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    bars.enable = lib.mkDefault cfg.enable;
-    notifications.enable = lib.mkDefault cfg.enable;
-    theme.enable = lib.mkDefault cfg.enable;
+    forgeOS.desktop = {
+      bars.enable = lib.mkDefault cfg.enable;
+      notifications.enable = lib.mkDefault cfg.enable;
+      theme.enable = lib.mkDefault cfg.enable;
+    };
 
     wayland.windowManager.sway = {
       enable = true;
