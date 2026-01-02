@@ -28,11 +28,7 @@ in {
           message_shortcode_display = true;
           reaction_shortcode_display = true;
           image_preview.protocol = {
-            type = "halfblocks";
-            size = {
-              height = 10;
-              width = 66;
-            };
+            type = "kitty";
           };
           notifications = {
             enabled = true;

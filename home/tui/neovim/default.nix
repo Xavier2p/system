@@ -79,7 +79,7 @@ in {
         rainbow-delimiters.enable = true;
         fugitive.enable = true;
         copilot-vim = {
-          enable = true;
+          enable = false;
           package = pkgs.vimPlugins.copilot-vim;
         };
         conform-nvim = {

@@ -7,28 +7,22 @@
   cfg = config.tui;
 in {
   imports = [
-    ./git.nix
+    # ./apps
     ./neovim
-    ./iamb.nix
-    ./tools.nix
-    ./zellij.nix
+    ./shell
+    ./tools
   ];
 
   options.tui.enable = lib.mkEnableOption "Enable TUI programs";
 
   config = lib.mkIf cfg.enable {
-    git.enable = lib.mkDefault true;
     nvim.enable = lib.mkDefault true;
-    shelltools.enable = lib.mkDefault true;
-    zellij.enable = lib.mkDefault true;
-    iamb.enable = lib.mkDefault false;
+    forgeOS.shell.enable = lib.mkDefault true;
+    forgeOS.tools.enable = lib.mkDefault true;
+    forgeOS.tools.enableEssentialTools = lib.mkDefault true;
 
-    home.packages = with pkgs; [
-      wget
-      dua
-      dust
-      presenterm
-      exegol
-    ];
+    # TEMPORARY
+    forgeOS.tools.enableExtendedTools = lib.mkDefault true;
+    forgeOS.tools.oxydize = lib.mkDefault true;
   };
 }

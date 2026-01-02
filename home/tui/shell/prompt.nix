@@ -4,15 +4,18 @@
   pkgs,
   ...
 }: let
-  cfg = config.starship;
+  cfg = config.forgeOS.shell.prompt;
 in {
-  options = {
-    starship.enable = lib.mkEnableOption "Enable starship prompt";
+  options.forgeOS.shell.prompt = {
+    enable = lib.mkOption {
+      type = lib.types.bool;
+      default = true;
+      description = "Enable Shell prompt using Starship.";
+    };
   };
 
   config =
     lib.mkIf cfg.enable {
-      home.packages = [pkgs.starship];
       programs.starship = {
         enable = true;
         enableZshIntegration = true;
