@@ -1,8 +1,10 @@
 {lib, ...}: {
   imports = [
     ./apps
-    ./tui
     ./desktop
+    ./neovim
+    ./shell
+    ./tools
   ];
 
   forgeOS.apps.enable = lib.mkDefault true;
@@ -13,6 +15,15 @@
 
   nixpkgs.config.allowUnfree = true;
   programs.home-manager.enable = true;
+
+  nvim.enable = lib.mkDefault true;
+  forgeOS.shell.enable = lib.mkDefault true;
+  forgeOS.tools.enable = lib.mkDefault true;
+  forgeOS.tools.enableEssentialTools = lib.mkDefault true;
+
+  # TEMPORARY
+  forgeOS.tools.enableExtendedTools = lib.mkDefault true;
+  forgeOS.tools.oxydize = lib.mkDefault true;
 
   home = {
     stateVersion = "24.05";
