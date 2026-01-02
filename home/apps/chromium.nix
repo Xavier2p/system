@@ -4,9 +4,9 @@
   pkgs,
   ...
 }: let
-  cfg = config.chromium;
+  cfg = config.forgeOS.apps.chromium;
 in {
-  options.chromium.enable = lib.mkEnableOption "Enable Chromium Browser";
+  options.forgeOS.apps.chromium.enable = lib.mkEnableOption "Chromium Browser";
 
   config = lib.mkIf cfg.enable {
     programs.chromium = {

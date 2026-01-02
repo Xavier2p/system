@@ -3,14 +3,11 @@
   lib,
   ...
 }: let
-  cfg = config.iamb;
+  cfg = config.forgeOS.apps.iamb;
 in {
-  options.iamb.enable = lib.mkEnableOption "IAMB Matrix Client";
+  options.forgeOS.apps.iamb.enable = lib.mkEnableOption "IAMB Matrix Client";
 
   config = lib.mkIf cfg.enable {
-    programs.spotify-player = {
-      enable = true;
-    };
     programs.iamb = {
       enable = true;
       settings = {

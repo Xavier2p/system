@@ -5,9 +5,9 @@
   pkgs,
   ...
 }: let
-  cfg = config.firefox;
+  cfg = config.forgeOS.apps.firefox;
 in {
-  options.firefox = {
+  options.forgeOS.apps.firefox = {
     enable = lib.mkEnableOption "Enable Firefox Browser";
   };
 

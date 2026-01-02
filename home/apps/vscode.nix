@@ -4,9 +4,9 @@
   pkgs,
   ...
 }: let
-  cfg = config.vscode;
+  cfg = config.forgeOS.apps.vscode;
 in {
-  options.vscode.enable = lib.mkEnableOption "Visual Studio Code";
+  options.forgeOS.apps.vscode.enable = lib.mkEnableOption "Visual Studio Code";
 
   config = lib.mkIf cfg.enable {
     programs.vscode = {
