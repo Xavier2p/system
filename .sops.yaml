@@ -1,0 +1,7 @@
+keys:
+  - &primary age10mfj8trak6n4dl5tpsf4jmjdu6z096zmqmurhcy424kw867g69cqysqn4t
+creation_rules:
+  - path_regex: secrets/.*\.sops$
+    key_groups:
+      - age:
+        - *primary
