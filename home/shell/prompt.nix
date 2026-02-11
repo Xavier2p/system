@@ -7,11 +7,7 @@
   cfg = config.forgeOS.shell.prompt;
 in {
   options.forgeOS.shell.prompt = {
-    enable = lib.mkOption {
-      type = lib.types.bool;
-      default = true;
-      description = "Enable Shell prompt using Starship.";
-    };
+    enable = lib.mkEnableOption "Starship prompt for your shell";
   };
 
   config =
@@ -184,7 +180,7 @@ $nix_shell$sudo$character";
 
           package = {
             disabled = false;
-            format = "[- $symbol v$version]($style) ";
+            format = "[- ](white)[$symbol v$version]($style) ";
             style = "dimmed orange";
             version_format = "\${raw}";
             symbol = "";

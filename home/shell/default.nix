@@ -18,6 +18,7 @@ in {
   config = lib.mkIf cfg.enable {
     forgeOS.shell = {
       aliases.enable = lib.mkDefault true;
+      prompt.enable = lib.mkDefault true;
     };
 
     programs.zsh = {
@@ -38,6 +39,10 @@ in {
         if command -v helm >/dev/null 2>&1; then
           source <(${pkgs.helm}/bin/helm completion zsh)
         fi
+        if command -v hugo >/dev/null 2>&1; then
+          source <(${pkgs.hugo}/bin/hugo completion zsh)
+        fi
+
       '';
 
       history = {

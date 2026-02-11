@@ -24,7 +24,7 @@ in {
     home.packages = lib.mkIf (!cfg.remote) [
       (pkgs.writeShellScriptBin "za" ''
         sessions=$(${pkgs.zellij}/bin/zellij ls | sed "s/\x1B\[[0-9;]*[mGK]//g" | awk '{print $1}')
-        selected_session=$(echo "$sessions" | ${pkgs.skim}/bin/sk --reverse --height 1 --tac)
+        selected_session=$(echo "$sessions" | ${pkgs.skim}/bin/sk --reverse --height 5 --tac)
         if [ -n "$selected_session" ]; then
           if [ -n "$ZELLIJ_SESSION_NAME" ]; then
             ${pkgs.zellij}/bin/zellij delete-session "$ZELLIJ_SESSION_NAME" --force
@@ -34,7 +34,7 @@ in {
       '')
       (pkgs.writeShellScriptBin "zd" ''
         sessions=$(${pkgs.zellij}/bin/zellij ls | sed "s/\x1B\[[0-9;]*[mGK]//g" | awk '{print $1}')
-        selected_session=$(echo "$sessions" | ${pkgs.skim}/bin/sk --reverse --height 1 --tac)
+        selected_session=$(echo "$sessions" | ${pkgs.skim}/bin/sk --reverse --height 5 --tac)
         if [ -n "$selected_session" ]; then
           ${pkgs.zellij}/bin/zellij delete-session "$selected_session" --force
         fi

@@ -18,9 +18,9 @@ in {
         control = "sufficient";
       };
       services = {
-        login.u2fAuth = true;
+        login.u2fAuth = false;
         sudo.u2fAuth = true;
-        swaylock.u2fAuth = lib.mkIf cfg.waylandEnable true;
+        swaylock.u2fAuth = false;
       };
     };
   };

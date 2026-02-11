@@ -14,6 +14,7 @@ in {
     ./kitty.nix
     ./vscode.nix
     ./yazi.nix
+    ./zen.nix
   ];
 
   options.forgeOS.apps = {
@@ -31,6 +32,7 @@ in {
     (lib.mkIf (cfg.enable && cfg.enableGUIApps) {
       forgeOS.apps.firefox.enable = lib.mkDefault true;
       forgeOS.apps.alacritty.enable = lib.mkDefault true;
+      forgeOS.apps.kitty.enable = lib.mkDefault true;
       forgeOS.apps.chromium.enable = lib.mkDefault true;
       forgeOS.apps.vscode.enable = lib.mkDefault false;
 
@@ -39,6 +41,7 @@ in {
         obsidian
         feh
         jetbrains.pycharm
+        tor-browser
       ];
     })
   ];

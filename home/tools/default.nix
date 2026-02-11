@@ -10,6 +10,7 @@ in {
     ./bat.nix
     ./direnv.nix
     ./eza.nix
+    ./fastfetch.nix
     ./fd.nix
     ./git.nix
     ./ripgrep.nix
@@ -32,6 +33,7 @@ in {
   config = lib.mkMerge [
     (lib.mkIf (cfg.enable && cfg.enableEssentialTools) {
       forgeOS.tools.eza.enable = true;
+      forgeOS.tools.eza.addAlias = true;
       forgeOS.tools.git.enable = true;
       forgeOS.tools.zellij.enable = true;
 
@@ -48,12 +50,14 @@ in {
       forgeOS.tools.fd.enable = true;
       forgeOS.tools.ripgrep.enable = true;
       forgeOS.tools.skim.enable = true;
+      forgeOS.tools.fastfetch.enable = true;
       programs.btop.enable = true;
 
       home.packages = with pkgs; [
         dua
         dust
         presenterm
+        proton-pass-cli
         # TEMPORARY: Disable exegol due to build issues
         # exegol
       ];

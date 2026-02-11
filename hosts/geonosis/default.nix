@@ -12,7 +12,8 @@ in {
     inputs.home-manager.nixosModules.default
     inputs.lanzaboote.nixosModules.lanzaboote
     ../../nixos
-    ../../profiles/laptop.nix
+    ../generix/laptop.nix
+    ../../profiles/work.nix
   ];
 
   # Bootloader.
@@ -25,10 +26,10 @@ in {
     };
     plymouth = {
       enable = true;
-      theme = "cuts";
+      theme = "darth_vader";
       themePackages = with pkgs; [
         (adi1090x-plymouth-themes.override {
-          selected_themes = ["cuts"];
+          selected_themes = ["darth_vader" "cuts"];
         })
       ];
     };
@@ -44,13 +45,14 @@ in {
     /home/eagle/.nixnotsync/certs/telex.crt
     /home/eagle/.nixnotsync/certs/multi.crt
     /home/eagle/.nixnotsync/certs/tavel.crt
+    /home/eagle/.nixnotsync/certs/vigan.crt
     /home/eagle/.nixnotsync/certs/alpes.si.crt
   ];
 
-  virtualisation.libvirtd.enable = true;
-  virtualisation.spiceUSBRedirection.enable = true;
+  virtualisation.libvirtd.enable = false;
+  virtualisation.spiceUSBRedirection.enable = false;
   users.groups.libvirtd.members = ["eagle"];
-  programs.virt-manager.enable = true;
+  programs.virt-manager.enable = false;
 
   # to move to the users file
   users.users."${user}" = {
@@ -63,12 +65,27 @@ in {
   # Variabilize the user name and add to template host file
   home-manager = {
     extraSpecialArgs = {inherit inputs;};
-    users."${user}" = import ./home.nix;
+    # users."${user}" = import ./home.nix;
+    users."${user}" = {
+      imports = [./../../home];
+
+      home = {
+        username = user;
+        homeDirectory = "/home/${user}";
+      };
+
+      # shelltools.enable = true;
+      # gui.enable = true;
+      forgeOS.desktop.enable = true;
+      forgeOS.apps.zen.enable = true;
+      nvim.enable = true;
+      # iamb.enable = true;
+    };
   };
 
   yubikey = {
     enable = true;
-    waylandEnable = true;
+    waylandEnable = false;
   };
 
   # move this line to the home-manager config

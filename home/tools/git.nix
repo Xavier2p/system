@@ -22,6 +22,18 @@ in {
       default = true;
       description = "Use git command aliases";
     };
+
+    additionalRemotes = lib.mkOption {
+      type = lib.types.listOf lib.types.str;
+      default = [];
+      description = "List of additional git remotes to add globally.";
+    };
+
+    extraConfigPath = lib.mkOption {
+      type = lib.types.str;
+      default = "";
+      description = "Path to an extra git config file to include.";
+    };
   };
 
   config = lib.mkIf cfg.enable {
@@ -54,7 +66,7 @@ in {
               condition = "hasconfig:remote.*.url:git@gitlab.alpes.si:*/**";
               contents.user = {
                 name = "PEX";
-                email = "REDACTED";
+                email = "pex@cartesian-lab.com";
                 signingkey = "~/.ssh/gh-sign.pub";
               };
             }
@@ -67,6 +79,11 @@ in {
               contents.user = ghConfig;
             }
           ];
+          # ++ lib.listToAttrs (map (remote: {
+          #     condition = "hasconfig:remote.*.url:${remote}:*/**";
+          #     path = cfg.extraConfigPath;
+          #   })
+          #   cfg.additionalRemotes);
 
           lfs.enable = true;
 

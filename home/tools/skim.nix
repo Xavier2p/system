@@ -22,8 +22,8 @@ in {
         skim = {
           enable = true;
           enableZshIntegration = true;
-          defaultOptions = ["--ansi" "--height 1" "--reverse"];
-          historyWidgetOptions = ["--ansi" "--height 1" "--prompt h>"];
+          defaultOptions = ["--ansi" "--height 10" "--reverse"];
+          historyWidgetOptions = ["--ansi" "--height 10" "--prompt h>"];
         };
       }
     ];

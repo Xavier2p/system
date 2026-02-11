@@ -20,6 +20,7 @@ in {
 
     # Enable SSH
     openssh.enable = lib.mkDefault false;
+    # fprintd.enable = true;
   };
 
   # Enable Sound

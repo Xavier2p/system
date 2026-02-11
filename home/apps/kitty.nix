@@ -5,7 +5,7 @@
 }: let
   cfg = config.forgeOS.apps.kitty;
 in {
-  options.forgeOS.apps.kitty.enable = lib.mkEnableOption "Alacritty Terminal";
+  options.forgeOS.apps.kitty.enable = lib.mkEnableOption "Kitty Terminal";
 
   config = lib.mkIf cfg.enable {
     programs.kitty = {
