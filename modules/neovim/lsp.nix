@@ -18,6 +18,7 @@ _: {
             ts_ls.enable = true;
             terraformls.enable = true;
             metals.enable = true;
+            tinymist.enable = true;
           };
         };
       }

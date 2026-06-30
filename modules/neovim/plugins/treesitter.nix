@@ -53,6 +53,7 @@ _: {
             toml
             terraform
             typescript
+            typst
             vim
             xml
             yaml

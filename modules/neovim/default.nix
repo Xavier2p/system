@@ -60,6 +60,7 @@
                 enable = true;
                 package = pkgs.vimPlugins.copilot-vim;
               };
+              typst-preview.enable = true;
               conform-nvim = {
                 enable = true;
                 settings = {
@@ -72,6 +73,7 @@
                     cpp = ["clang-format"];
                     c = ["clang-format"];
                     rust = ["rustfmt"];
+                    typ = ["tinymist"];
                   };
                 };
               };

@@ -13,8 +13,7 @@ _: {
           mouse = "";
           list = true;
           listchars = "tab:>─,eol:¬";
-
-          colorcolumn = "80";
+          colorcolumn = "80,120";
           cursorline = true;
           updatetime = 100;
         };
