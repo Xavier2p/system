@@ -80,9 +80,10 @@ _: {
                     showStash = true;
                     showUntrackedFiles = "all";
                   };
-                  init.defaultBranch = "master";
+                  init.defaultBranch = "main";
                   color.ui = true;
                   commit.gpgSign = true;
+                  tag.gpgSign = true;
                   push = {
                     autoSetupRemote = true;
                     default = "current";

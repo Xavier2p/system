@@ -33,6 +33,7 @@ _: {
               };
               input.cursor_blink = true;
               opener = {
+                # Add Editor, copy to clipboard, unzip, untar
                 tdf = [
                   {
                     run = "${pkgs.ghostty}/bin/ghostty --font-size=12 --command='${pkgs.tdf}/bin/tdf %s'";

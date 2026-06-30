@@ -70,10 +70,7 @@
               cursor.size = 8;
 
               input = {
-                keyboard.xkb = {
-                  layout = "us";
-                  options = "caps:escape";
-                };
+                keyboard.xkb.file = "~/.config/keymap.xkb";
                 touchpad.natural-scroll = true;
                 focus-follows-mouse.enable = true;
               };

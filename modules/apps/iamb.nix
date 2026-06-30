@@ -6,7 +6,7 @@ _: {
   }: let
     cfg = config.forgeOS.apps.iamb;
   in {
-    options.forgeOS.apps.iamb.enable = lib.mkEnableOption "IAMB Matrix Client (BROKEN UPDATE)";
+    options.forgeOS.apps.iamb.enable = lib.mkEnableOption "IAMB Matrix Client";
 
     config.home-manager.sharedModules = lib.mkIf cfg.enable [
       {
@@ -26,12 +26,13 @@ _: {
             settings = {
               message_shortcode_display = true;
               reaction_shortcode_display = true;
-              image_preview.protocol = {
-                type = "kitty";
-              };
-              notifications = {
-                enabled = true;
-                # via = "desktop";
+              notifications.enabled = true;
+              image_preview = {
+                protocol.type = "kitty";
+                size = {
+                  height = 50;
+                  width = 50;
+                };
               };
               users = {
                 "@myn:p.ki".color = "yellow";

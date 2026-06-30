@@ -24,7 +24,6 @@
     config.boot = {
       loader.systemd-boot.enable = lib.mkForce (!cfg.enableSecureBoot);
 
-      bootspec.enable = cfg.enableSecureBoot;
       lanzaboote = {
         enable = cfg.enableSecureBoot;
         pkiBundle = "/var/lib/sbctl";

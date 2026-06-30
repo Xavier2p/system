@@ -28,6 +28,30 @@ _: {
           '';
 
           ".assets/wallpaper.png".source = cfg.wallpaper;
+
+          ".config/keymap.xkb".text = ''
+            xkb_keymap {
+                xkb_keycodes  { include "evdev+aliases(qwerty)" };
+                xkb_types     { include "complete"               };
+                xkb_compat    { include "complete"               };
+                xkb_symbols   {
+                    include "pc+us+inet(evdev)"
+
+                    key <RALT>  { [ ISO_Level3_Shift ] };
+                    modifier_map Mod5 { <RALT> };
+
+                    key <CAPS>  { [ Escape ] };
+
+                    key <AD03>  { [ e, E, dead_acute,      dead_acute      ] }; // Alt+e  → ´ (dead)
+                    key <AC01>  { [ a, A, dead_grave,      dead_grave      ] }; // Alt+a  → ` (dead)
+                    key <AD01>  { [ q, Q, U0153,           U0152           ] }; // Alt+q  → œ / Œ
+                    key <AB03>  { [ c, C, ccedilla,        Ccedilla        ] }; // Alt+c  → ç / Ç
+                    key <AD07>  { [ u, U, dead_circumflex, dead_circumflex ] }; // Alt+u  → ^ (dead)
+                    key <AD08>  { [ i, I, dead_diaeresis,  dead_diaeresis  ] }; // Alt+i  → ¨ (dead)
+                };
+                xkb_geometry  { include "pc(pc105)" };
+            };
+          '';
         };
 
         programs.noctalia-shell = {

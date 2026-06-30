@@ -6,13 +6,13 @@ _: {
           workspaces = {
             "01/TRM".open-on-output = "DP-8";
             "02/BWR".open-on-output = "DP-9";
-            "03".open-on-output = "DP-8";
-            "04".open-on-output = "DP-9";
+            "03/CHR".open-on-output = "DP-8";
+            "04/SSH".open-on-output = "DP-9";
             "05" = {};
             "06" = {};
             "07" = {};
-            "08" = {};
-            "09/PUB" = {};
+            "08/PKM".open-on-output = "eDP-1";
+            "09/PUB".open-on-output = "eDP-1";
             "10/SYS".open-on-output = "eDP-1";
           };
 
