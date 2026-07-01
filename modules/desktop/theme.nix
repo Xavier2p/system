@@ -46,8 +46,8 @@ _: {
                     key <AC01>  { [ a, A, dead_grave,      dead_grave      ] }; // Alt+a  → ` (dead)
                     key <AD01>  { [ q, Q, U0153,           U0152           ] }; // Alt+q  → œ / Œ
                     key <AB03>  { [ c, C, ccedilla,        Ccedilla        ] }; // Alt+c  → ç / Ç
-                    key <AD07>  { [ u, U, dead_circumflex, dead_circumflex ] }; // Alt+u  → ^ (dead)
-                    key <AD08>  { [ i, I, dead_diaeresis,  dead_diaeresis  ] }; // Alt+i  → ¨ (dead)
+                    key <AD07>  { [ u, U, dead_diaeresis, dead_diaeresis ] }; // Alt+u  → ¨ (dead)
+                    key <AD08>  { [ i, I, dead_circumflex,  dead_circumflex  ] }; // Alt+i  → ^ (dead)
                 };
                 xkb_geometry  { include "pc(pc105)" };
             };
