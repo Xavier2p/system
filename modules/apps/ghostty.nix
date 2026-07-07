@@ -10,7 +10,10 @@ _: {
     options.forgeOS.apps.ghostty.enable = lib.mkEnableOption "Ghostty Terminal";
 
     config = lib.mkIf cfg.enable {
-      environment.systemPackages = [pkgs.ghostty];
+      environment = {
+        variables.GTK_IM_MODULE = "simple";
+        systemPackages = [pkgs.ghostty];
+      };
 
       home-manager.sharedModules = [
         {
@@ -28,10 +31,7 @@ _: {
               window-padding-x = 3;
               window-padding-y = 3;
               window-decoration = "none";
-              # gtk-single-instance = true;
-              # gtk-titlebar = false;
-              # term = "xterm-256color";
-              shell-integration-features = "no-cursor";
+              shell-integration-features = "no-cursor,ssh-env";
               confirm-close-surface = false;
               keybind = [
                 "ctrl+shift+v=paste_from_clipboard"
