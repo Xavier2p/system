@@ -20,7 +20,6 @@
     config = lib.mkMerge [
       (lib.mkIf (cfg.enable && cfg.enableTUIApps) {
         forgeOS.apps = {
-          # Breaking Update
           iamb.enable = lib.mkDefault true;
           yazi.enable = lib.mkDefault true;
           obsidian.tui = lib.mkDefault true;
@@ -44,7 +43,10 @@
 
         services.netbird.ui.enable = true;
 
-        environment.systemPackages = with pkgs; [tor-browser signal-desktop];
+        environment.systemPackages = with pkgs; [
+          tor-browser
+          signal-desktop
+        ];
       })
     ];
   };
