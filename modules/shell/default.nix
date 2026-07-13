@@ -49,7 +49,9 @@ _: {
               if command -v hugo >/dev/null 2>&1; then
                 source <(${pkgs.hugo}/bin/hugo completion zsh)
               fi
-
+              if command -v pass-cli >/dev/null 2>&1; then
+                source <(${pkgs.proton-pass-cli}/bin/pass-cli completions zsh)
+              fi
             '';
 
             history = {
