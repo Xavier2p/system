@@ -1,32 +1,26 @@
 _: {
-  flake.nixosModules.neovim = {pkgs, ...}: {
-    home-manager.sharedModules = [
-      {
-        programs.nixvim.plugins.lsp = {
-          enable = true;
-          servers = {
-            nixd.enable = true;
-            clangd.enable = true;
-            bashls.enable = true;
-            markdown_oxide.enable = true;
-            cmake.enable = true;
-            rust_analyzer = {
-              enable = true;
-              installCargo = false;
-              installRustc = false;
-            };
-            ts_ls.enable = true;
-            terraformls.enable = true;
-            metals.enable = true;
-            tinymist.enable = true;
-          };
-        };
-      }
-    ];
+  flake.nixvimModules.default = {pkgs, ...}: {
+    plugins.lsp = {
+      enable = true;
+      servers = {
+        bashls.enable = true;
+        clangd.enable = true;
+        cmake.enable = true;
+        markdown_oxide.enable = true;
+        metals.enable = true;
+        nixd.enable = true;
+        terraformls.enable = true;
+        tinymist.enable = true;
+        ts_ls.enable = true;
 
-    environment.systemPackages = with pkgs; [
-      nixd
-      alejandra
-    ];
+        rust_analyzer = {
+          enable = true;
+          installCargo = false;
+          installRustc = false;
+        };
+      };
+    };
+
+    extraPackages = with pkgs; [nixd alejandra];
   };
 }

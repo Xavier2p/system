@@ -1,86 +1,53 @@
 {inputs, ...}: {
-  flake.nixosModules.neovim = {
-    config,
-    lib,
-    pkgs,
-    ...
-  }: let
-    cfg = config.forgeOS.tools.nvim;
-  in {
-    options.forgeOS.tools.nvim = {
-      enable = lib.mkEnableOption "NeoVIM configuration";
-    };
+  flake.nixvimModules.default = {
+    nixpkgs.source = inputs.nixpkgs.outPath;
 
-    config = lib.mkIf cfg.enable {
-      programs.nano.enable = false;
+    # defaultEditor = true;
+    enableMan = true;
+    # viAlias = false;
 
-      nixpkgs.config.allowUnfreePredicate = pkg:
-        builtins.elem (lib.getName pkg) [
-          "vimPlugins.copilot-vim"
-        ];
-
-      home-manager.sharedModules = [
-        {
-          imports = [inputs.nixvim.homeModules.nixvim];
-
-          programs.nixvim = {
-            enable = true;
-            nixpkgs.source = inputs.nixpkgs.outPath;
-
-            defaultEditor = true;
-            enableMan = true;
-            viAlias = false;
-
-            plugins = {
-              cmp = {
-                enable = true;
-                autoEnableSources = true;
-                settings = {
-                  sources = [
-                    {name = "nvim_lsp";}
-                    {name = "path";}
-                    {name = "buffer";}
-                  ];
-                };
-              };
-              gitgutter = {
-                enable = true;
-                settings = {
-                  sign_added = "|";
-                  sign_modified = "|";
-                  sign_modified_removed = "±";
-                  sign_removed = "-";
-                  sign_removed_firstLine = "ø";
-                };
-              };
-              web-devicons.enable = true;
-              rainbow-delimiters.enable = true;
-              fugitive.enable = true;
-              copilot-vim = {
-                enable = true;
-                package = pkgs.vimPlugins.copilot-vim;
-              };
-              typst-preview.enable = true;
-              conform-nvim = {
-                enable = true;
-                settings = {
-                  format_on_save = {
-                    timeout_ms = 1000;
-                    lsp_format = "fallback";
-                  };
-                  formatters_by_ft = {
-                    nix = ["alejandra"];
-                    cpp = ["clang-format"];
-                    c = ["clang-format"];
-                    rust = ["rustfmt"];
-                    typ = ["tinymist"];
-                  };
-                };
-              };
-            };
+    plugins = {
+      cmp = {
+        enable = true;
+        autoEnableSources = true;
+        settings = {
+          sources = [
+            {name = "nvim_lsp";}
+            {name = "path";}
+            {name = "buffer";}
+          ];
+        };
+      };
+      gitgutter = {
+        enable = true;
+        settings = {
+          sign_added = "|";
+          sign_modified = "|";
+          sign_modified_removed = "±";
+          sign_removed = "-";
+          sign_removed_firstLine = "ø";
+        };
+      };
+      web-devicons.enable = true;
+      rainbow-delimiters.enable = true;
+      fugitive.enable = true;
+      typst-preview.enable = true;
+      conform-nvim = {
+        enable = true;
+        settings = {
+          format_on_save = {
+            timeout_ms = 1000;
+            lsp_format = "fallback";
           };
-        }
-      ];
+          formatters_by_ft = {
+            nix = ["alejandra"];
+            cpp = ["clang-format"];
+            c = ["clang-format"];
+            rust = ["rustfmt"];
+            typ = ["tinymist"];
+          };
+        };
+      };
     };
   };
 }
