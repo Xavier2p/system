@@ -59,7 +59,7 @@
     };
 
     niri = {
-      url = "github:sodiboo/niri-flake";
+      url = "github:epireyn/niri-flake";
       inputs = {
         nixpkgs.follows = "nixpkgs";
         nixpkgs-stable.follows = "nixpkgs";
@@ -77,6 +77,16 @@
     treefmt = {
       url = "github:numtide/treefmt-nix";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    koad = {
+      url = "git+file:///home/pex/dev/tbx/laptop";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        parts.follows = "parts";
+        treefmt.follows = "treefmt";
+        import-tree.follows = "import-tree";
+      };
     };
   };
 
