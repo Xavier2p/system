@@ -202,6 +202,20 @@
                   icon = "https://www.startpage.com/sp/cdn/favicons/favicon-gradient.ico";
                   updateInterval = 24 * 60 * 60 * 1000;
                 };
+                "Pappers" = {
+                  urls = [
+                    {
+                      template = "https://www.pappers.fr/recherche";
+                      params = [
+                        {
+                          name = "q";
+                          value = "{searchTerms}";
+                        }
+                      ];
+                    }
+                  ];
+                  definedAliases = ["pappers" "ppr"];
+                };
               };
             };
 

@@ -54,8 +54,6 @@ _: {
           dust
           presenterm
           btop
-          # only work
-          exegol
         ];
       })
 

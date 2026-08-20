@@ -1,4 +1,4 @@
-_: {
+{inputs, ...}: {
   flake.nixosModules.work-profile = {
     config,
     pkgs,
@@ -6,11 +6,19 @@ _: {
   }: let
     user = "pex";
   in {
+    imports = [inputs.koad.nixosModules.default];
+
+    koad = {
+      home.enable = false;
+      softs.enable = false;
+    };
+
     forgeOS.profiles.work = {
       inherit user;
       extraPackages = with pkgs; [
         glab
         thunderbird
+        libreoffice
       ];
       extraSSHConfig = [config.sops.secrets.ssh-config-work.path];
       extraGitAccounts = {

@@ -24,19 +24,27 @@ _: {
 
       # Enable SSH
       openssh.enable = lib.mkDefault false;
-    };
 
-    services = {
+      # Power Management
       upower.enable = true;
       tuned.enable = true;
-    };
 
-    services.fwupd.enable = true;
+      # Firmware Update
+      fwupd.enable = true;
+    };
 
     # Install needed packages
     environment.systemPackages = with pkgs; [
       libimobiledevice
     ];
+
+    # hardware.bluetooth = {
+    #   enable = true;
+    #   powerOnBoot = false;
+    #   settings = {
+    #     General.ControllerMode = "bredr";
+    #   };
+    # };
 
     # Enable Modules
     forgeOS = {
