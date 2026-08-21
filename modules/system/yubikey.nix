@@ -2,6 +2,7 @@ _: {
   flake.nixosModules.system = {
     config,
     lib,
+    pkgs,
     ...
   }: let
     cfg = config.forgeOS.security;
@@ -19,29 +20,37 @@ _: {
       };
     };
 
-    config.security = {
-      # lockKernelModules = true;
-      # protectKernelImage = true;
-
-      polkit.enable = true;
-      sudo.enable = cfg.sudo == "sudo";
-      sudo-rs = {
-        enable = cfg.sudo == "sudo-rs";
-        extraConfig = ''
-          Defaults !pwfeedback
-        '';
+    config = {
+      services = {
+        # For GPG mail and SSH Signature
+        pcscd.enable = true;
+        udev.packages = with pkgs; [yubikey-personalization];
       };
 
-      pam = {
-        u2f = {
-          inherit (ybk) enable;
-          settings.cue = ybk.enable;
-          control = "sufficient";
+      security = {
+        # lockKernelModules = true;
+        # protectKernelImage = true;
+
+        polkit.enable = true;
+        sudo.enable = cfg.sudo == "sudo";
+        sudo-rs = {
+          enable = cfg.sudo == "sudo-rs";
+          extraConfig = ''
+            Defaults !pwfeedback
+          '';
         };
-        services = {
-          login.u2fAuth = ybk.enable;
-          sudo.u2fAuth = ybk.enable;
-          swaylock.u2fAuth = ybk.enableForWayland;
+
+        pam = {
+          u2f = {
+            inherit (ybk) enable;
+            settings.cue = ybk.enable;
+            control = "sufficient";
+          };
+          services = {
+            login.u2fAuth = ybk.enable;
+            sudo.u2fAuth = ybk.enable;
+            swaylock.u2fAuth = ybk.enableForWayland;
+          };
         };
       };
     };

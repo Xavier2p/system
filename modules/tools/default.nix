@@ -26,6 +26,7 @@ _: {
             addAlias = true;
           };
           git.enable = true;
+          gpg.enable = true;
           zellij.enable = true;
         };
 
